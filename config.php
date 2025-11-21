@@ -20,17 +20,17 @@ if ($isDocker) {
 }
 // Shared Hosting Configuration
 else {
-    // Edit these values for your shared hosting:
-    define('DB_HOST', 'localhost');                    // Usually 'localhost'
-    define('DB_NAME', 'educareer_db');                 // Your database name
-    define('DB_USER', 'educareer_user');               // Your database username
-    define('DB_PASS', 'educareer_pass_2025');          // Your database password
+    // Your actual shared hosting credentials
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'u588596519_eduwebx');
+    define('DB_USER', 'u588596519_eduwebx');
+    define('DB_PASS', '2~kPwXg^$U');
 }
 
 // ============================================
 // SITE CONFIGURATION
 // ============================================
-define('SITE_URL', 'https://www.educareerindia.com');
+define('SITE_URL', 'https://webxexpert.space/');
 define('SITE_NAME', 'EDU Career India');
 define('SITE_EMAIL', 'info@educareerindia.com');
 
