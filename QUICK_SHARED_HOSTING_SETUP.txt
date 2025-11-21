@@ -1,0 +1,182 @@
+================================================================================
+EDU CAREER INDIA - SHARED HOSTING QUICK SETUP GUIDE
+================================================================================
+
+IMPORTANT FILES TO CONFIGURE:
+================================================================================
+
+1. config.php (MAIN CONFIGURATION - MUST EDIT!)
+   Location: /config.php
+
+   Change these lines (around line 14-17):
+
+   FROM (Docker):
+   define('DB_HOST', 'db');
+   define('DB_NAME', 'educareer_db');
+   define('DB_USER', 'educareer_user');
+   define('DB_PASS', 'educareer_pass_2025');
+
+   TO (Shared Hosting):
+   define('DB_HOST', 'localhost');                    ← Usually 'localhost'
+   define('DB_NAME', 'yourusername_educareer');       ← Your database name
+   define('DB_USER', 'yourusername_dbuser');          ← Your database username
+   define('DB_PASS', 'YOUR_STRONG_PASSWORD_HERE');    ← Your database password
+
+   AND Change (around line 22):
+   FROM: define('SITE_URL', 'https://www.educareerindia.com');
+   TO:   define('SITE_URL', 'https://www.yourdomain.com');  ← Your actual domain
+
+   AND Change (around line 30):
+   FROM: error_reporting(E_ALL);
+         ini_set('display_errors', 0);
+   TO:   error_reporting(0);                          ← Disable all errors in production
+         ini_set('display_errors', 0);
+
+2. admin/includes/config.php (ADMIN CONFIG)
+   Location: /admin/includes/config.php
+
+   Replace entire database section with:
+
+   <?php
+   // Include main site config
+   require_once dirname(dirname(__DIR__)) . '/config.php';
+
+   // Admin-specific configurations
+   define('ADMIN_SESSION_NAME', 'educareer_admin');
+   ?>
+
+3. robots.txt (OPTIONAL)
+   Location: /robots.txt
+
+   Change line 4:
+   FROM: Sitemap: https://www.educareerindia.com/sitemap.xml
+   TO:   Sitemap: https://www.yourdomain.com/sitemap.xml
+
+4. sitemap.xml (OPTIONAL)
+   Location: /sitemap.xml
+
+   Find and replace all instances of:
+   FROM: https://www.educareerindia.com
+   TO:   https://www.yourdomain.com
+
+================================================================================
+DIRECTORY PERMISSIONS (Set via FTP or cPanel File Manager):
+================================================================================
+
+uploads/               → 755 (or 775 if 755 doesn't work)
+uploads/hero/          → 755
+uploads/services/      → 755
+uploads/courses/       → 755
+uploads/testimonials/  → 755
+uploads/icons/         → 755
+uploads/backgrounds/   → 755
+uploads/misc/          → 755
+
+config.php             → 644
+*.php files            → 644
+admin/                 → 755
+
+================================================================================
+DATABASE SETUP:
+================================================================================
+
+1. Create database in cPanel (MySQL Databases)
+   Name: yourusername_educareer
+
+2. Create database user
+   Username: yourusername_dbuser
+   Password: [strong password]
+
+3. Add user to database with ALL PRIVILEGES
+
+4. Import database structure:
+   - Go to phpMyAdmin
+   - Select your database
+   - Click Import tab
+   - Choose file: database/init.sql
+   - Click Go
+
+5. Note your credentials and update config.php (see step 1 above)
+
+================================================================================
+FILES TO UPLOAD (via FTP/SFTP or cPanel File Manager):
+================================================================================
+
+Upload ALL files EXCEPT:
+❌ docker-compose.yml
+❌ Dockerfile
+❌ *.backup files
+❌ .git folder
+❌ SHARED_HOSTING_SETUP.md
+❌ QUICK_SHARED_HOSTING_SETUP.txt (this file)
+
+Upload to: public_html/ or www/ directory
+
+================================================================================
+ADMIN LOGIN (DEFAULT - CHANGE IMMEDIATELY!):
+================================================================================
+
+URL:      https://yourdomain.com/admin
+Username: admin
+Password: admin123
+
+⚠️ CHANGE PASSWORD IMMEDIATELY AFTER FIRST LOGIN!
+
+================================================================================
+TESTING CHECKLIST:
+================================================================================
+
+After setup, test these:
+☐ Visit homepage (https://yourdomain.com)
+☐ Check all pages load (about, courses, universities, contact)
+☐ Login to admin panel
+☐ Upload a test image in admin
+☐ Edit homepage content in admin
+☐ Verify changes appear on frontend
+☐ Test contact form submission
+☐ Check contact submission appears in admin
+
+================================================================================
+TROUBLESHOOTING:
+================================================================================
+
+Error: "Database connection failed"
+→ Check config.php credentials
+→ Verify database exists in phpMyAdmin
+→ Try '127.0.0.1' instead of 'localhost' for DB_HOST
+
+Error: "404 Not Found"
+→ Check if .htaccess file exists
+→ Verify mod_rewrite is enabled (ask hosting support)
+
+Error: "500 Internal Server Error"
+→ Check PHP version is 8.0+ (cPanel → PHP Selector)
+→ Check file permissions
+→ Look at error.log file
+
+Images not uploading
+→ Check uploads/ directory permissions (should be 755 or 775)
+→ Verify disk space available
+
+Admin changes don't appear on frontend
+→ Clear browser cache (Ctrl+F5)
+→ Verify pages use config.php correctly
+
+================================================================================
+IMPORTANT SECURITY NOTES:
+================================================================================
+
+1. Change default admin password immediately!
+2. Use strong database password
+3. Enable HTTPS/SSL (free via cPanel or Let's Encrypt)
+4. Regular backups (database + files)
+5. Keep error_reporting disabled in production
+
+================================================================================
+SUPPORT:
+================================================================================
+
+For detailed guide, see: SHARED_HOSTING_SETUP.md
+For hosting-specific issues, contact your hosting provider
+
+================================================================================

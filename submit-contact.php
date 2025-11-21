@@ -3,28 +3,12 @@
  * EDU Career India - Contact Form Submission Handler
  */
 
-// Database configuration
-define('DB_HOST', 'db');
-define('DB_NAME', 'educareer_db');
-define('DB_USER', 'educareer_user');
-define('DB_PASS', 'educareer_pass_2025');
-
-// Connect to database
-try {
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-} catch (PDOException $e) {
-    // Redirect back with error
-    header('Location: /contact.php?error=database');
-    exit;
-}
+// Include main configuration
+require_once __DIR__ . '/config.php';
 
 // Only accept POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /contact.php');
-    exit;
+    redirect('/contact.php');
 }
 
 // Sanitize and validate input
@@ -57,8 +41,7 @@ if (empty($course)) {
 // If validation fails, redirect back with errors
 if (!empty($errors)) {
     $errorMsg = implode(', ', $errors);
-    header('Location: /contact.php?error=' . urlencode($errorMsg));
-    exit;
+    redirect('/contact.php?error=' . urlencode($errorMsg));
 }
 
 // Insert into database
@@ -71,11 +54,12 @@ try {
     $stmt->execute([$name, $email, $phone, $course, $city, $message]);
 
     // Redirect with success message
-    header('Location: /contact.php?success=1');
-    exit;
+    redirect('/contact.php?success=1');
 
 } catch (PDOException $e) {
+    // Log error for debugging
+    error_log("Contact form submission error: " . $e->getMessage());
+
     // Redirect with error
-    header('Location: /contact.php?error=submission_failed');
-    exit;
+    redirect('/contact.php?error=submission_failed');
 }

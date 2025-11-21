@@ -4,52 +4,8 @@
  * Dynamic content from database
  */
 
-// Database configuration
-define('DB_HOST', 'db');
-define('DB_NAME', 'educareer_db');
-define('DB_USER', 'educareer_user');
-define('DB_PASS', 'educareer_pass_2025');
-
-// Connect to database
-try {
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-} catch (PDOException $e) {
-    // Fallback if database not available
-    $pdo = null;
-}
-
-// Helper function to get page content
-function getContent($page, $section, $key, $default = '') {
-    global $pdo;
-    if (!$pdo) return $default;
-
-    try {
-        $stmt = $pdo->prepare("SELECT content_value FROM page_content WHERE page_name = ? AND section_name = ? AND content_key = ? AND is_active = 1");
-        $stmt->execute([$page, $section, $key]);
-        $result = $stmt->fetch();
-        return $result ? $result['content_value'] : $default;
-    } catch (Exception $e) {
-        return $default;
-    }
-}
-
-// Helper function to get statistics
-function getStat($key, $default = 0) {
-    global $pdo;
-    if (!$pdo) return $default;
-
-    try {
-        $stmt = $pdo->prepare("SELECT stat_value FROM site_statistics WHERE stat_key = ?");
-        $stmt->execute([$key]);
-        $result = $stmt->fetch();
-        return $result ? $result['stat_value'] : $default;
-    } catch (Exception $e) {
-        return $default;
-    }
-}
+// Include main configuration
+require_once __DIR__ . '/config.php';
 
 // Get dynamic content (with fallbacks to original content)
 $heroTitle = getContent('home', 'hero', 'title', 'Your Gateway to Top Universities in India & Abroad');
