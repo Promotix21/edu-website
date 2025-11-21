@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================
+       BASIC META TAGS
+       ============================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- ============================================
+       SEO META TAGS - OPTIMIZED
+       ============================================ -->
+  <title>Courses - MBBS, B.Tech, B.Pharma, Agriculture, MBA Admission | EDU Career India</title>
+  <meta name="description" content="Explore direct admission opportunities for MBBS, B.Tech Engineering, B.Pharma, B.Sc Agriculture, and MBA programs at top colleges. Complete course details, eligibility, career prospects & admission guidance.">
+  <meta name="keywords" content="MBBS admission, B.Tech admission, B.Pharma courses, B.Sc Agriculture, MBA admission, engineering colleges, medical colleges, pharmacy colleges, management programs, direct admission courses">
+  <meta name="author" content="EDU Career India">
+  <meta name="robots" content="index, follow">
+
+  <!-- ============================================
+       CANONICAL URL
+       ============================================ -->
+  <link rel="canonical" href="https://www.educareerindia.com/courses">
+
+  <!-- ============================================
+       OPEN GRAPH / SOCIAL MEDIA META TAGS
+       ============================================ -->
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Professional Courses - MBBS, B.Tech, MBA & More | EDU Career India">
+  <meta property="og:description" content="Get direct admission to top MBBS, B.Tech, B.Pharma, Agriculture & MBA programs. Expert guidance for your career success.">
+  <meta property="og:url" content="https://www.educareerindia.com/courses">
+  <meta property="og:site_name" content="EDU Career India">
+  <meta property="og:image" content="https://www.educareerindia.com/assets/images/courses-og-image.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Professional Courses - Direct Admission Services">
+  <meta name="twitter:description" content="MBBS, B.Tech, B.Pharma, Agriculture, MBA - Get expert admission guidance for top colleges.">
+  <meta name="twitter:image" content="https://www.educareerindia.com/assets/images/courses-og-image.jpg">
+
+  <!-- ============================================
+       FAVICON
+       ============================================ -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+
+  <!-- ============================================
+       PRECONNECT FOR PERFORMANCE
+       ============================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- ============================================
+       FONTS
+       ============================================ -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ============================================
+       STYLESHEETS
+       ============================================ -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- ============================================
+       STRUCTURED DATA / SCHEMA MARKUP
+       ============================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.educareerindia.com/courses#webpage",
+        "url": "https://www.educareerindia.com/courses",
+        "name": "Courses - MBBS, B.Tech, B.Pharma, MBA Admission",
+        "description": "Complete information about MBBS, B.Tech, B.Pharma, Agriculture, and MBA admission services.",
+        "isPartOf": {
+          "@id": "https://www.educareerindia.com/#website"
+        },
+        "datePublished": "2024-01-01T00:00:00+05:30",
+        "dateModified": "2025-11-21T00:00:00+05:30"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.educareerindia.com/courses#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.educareerindia.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Courses",
+            "item": "https://www.educareerindia.com/courses"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Professional Courses Offered",
+        "description": "List of professional courses for which EDU Career India provides admission services",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "MBBS Program",
+            "url": "https://www.educareerindia.com/courses#mbbs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "B.Tech Engineering",
+            "url": "https://www.educareerindia.com/courses#btech"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "B.Pharma",
+            "url": "https://www.educareerindia.com/courses#bpharma"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "B.Sc Agriculture",
+            "url": "https://www.educareerindia.com/courses#agriculture"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "MBA & PGDM",
+            "url": "https://www.educareerindia.com/courses#mba"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .course-section {
+      scroll-margin-top: 100px;
+    }
+    .course-card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 3rem;
+    }
+    .course-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 3px solid var(--primary-color);
+    }
+    .course-icon-large {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+    .course-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .detail-box {
+      padding: 1.5rem;
+      background: var(--light-color);
+      border-radius: 0.75rem;
+      border-left: 4px solid var(--primary-color);
+    }
+    .detail-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .detail-box p {
+      color: var(--text-primary);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .info-section {
+      margin: 2rem 0;
+    }
+    .info-section h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .info-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .info-section li {
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--text-secondary);
+    }
+    .info-section li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================
+       HEADER / NAVIGATION
+       ============================================ -->
+  <header class="header" role="banner">
+    <nav class="navbar container" role="navigation" aria-label="Main navigation">
+      <a href="/" class="logo" aria-label="EDU Career India - Home">
+        EDU <span>Career</span> India
+      </a>
+
+      <ul class="nav-menu" role="menubar">
+        <li role="none"><a href="/" class="nav-link" role="menuitem">Home</a></li>
+        <li role="none"><a href="/about.php" class="nav-link" role="menuitem">About Us</a></li>
+        <li role="none"><a href="/courses.php" class="nav-link active" role="menuitem" aria-current="page">Courses</a></li>
+        <li role="none"><a href="/universities.php" class="nav-link" role="menuitem">Universities</a></li>
+        <li role="none"><a href="/contact.php" class="nav-link" role="menuitem">Contact</a></li>
+      </ul>
+
+      <div class="mobile-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================
+       MAIN CONTENT
+       ============================================ -->
+  <main id="main-content" role="main">
+
+    <!-- BREADCRUMB NAVIGATION -->
+    <nav aria-label="Breadcrumb" style="padding-top: 100px; padding-bottom: 1rem; background-color: var(--light-color);">
+      <div class="container">
+        <ol style="list-style: none; display: flex; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+          <li><a href="/" style="color: var(--primary-color);">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page">Courses</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="section-sm" style="background-color: var(--light-color);" aria-labelledby="page-heading">
+      <div class="container text-center">
+        <h1 id="page-heading">Professional Courses & Programs</h1>
+        <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto;">Explore comprehensive admission guidance for India's most sought-after professional courses. Your path to a successful career starts here.</p>
+      </div>
+    </section>
+
+    <!-- COURSES NAVIGATION -->
+    <section style="background: var(--white); padding: 1.5rem 0; box-shadow: var(--shadow-md); position: sticky; top: 70px; z-index: 100;">
+      <div class="container">
+        <nav aria-label="Course navigation">
+          <ul style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; list-style: none;">
+            <li><a href="#mbbs" style="color: var(--primary-color); font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; display: inline-block;">🩺 MBBS</a></li>
+            <li><a href="#btech" style="color: var(--primary-color); font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; display: inline-block;">⚙️ B.Tech</a></li>
+            <li><a href="#bpharma" style="color: var(--primary-color); font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; display: inline-block;">💊 B.Pharma</a></li>
+            <li><a href="#agriculture" style="color: var(--primary-color); font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; display: inline-block;">🌾 Agriculture</a></li>
+            <li><a href="#mba" style="color: var(--primary-color); font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; display: inline-block;">📊 MBA</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- MBBS SECTION -->
+    <section id="mbbs" class="section course-section" aria-labelledby="mbbs-heading">
+      <div class="container">
+        <article class="course-card">
+          <div class="course-header">
+            <div class="course-icon-large" aria-hidden="true">🩺</div>
+            <div>
+              <h2 id="mbbs-heading" style="margin-bottom: 0.5rem;">MBBS - Bachelor of Medicine, Bachelor of Surgery</h2>
+              <p style="font-size: 1.125rem; color: var(--text-secondary); margin: 0;">Your pathway to becoming a medical professional at India's premier medical colleges</p>
+            </div>
+          </div>
+
+          <div class="course-details">
+            <div class="detail-box">
+              <h4>Duration</h4>
+              <p>5.5 Years (4.5 years + 1 year internship)</p>
+            </div>
+            <div class="detail-box">
+              <h4>Eligibility</h4>
+              <p>10+2 with PCB (50% marks) + NEET qualification</p>
+            </div>
+            <div class="detail-box">
+              <h4>Career Scope</h4>
+              <p>Doctor, Surgeon, Medical Researcher</p>
+            </div>
+            <div class="detail-box">
+              <h4>Average Package</h4>
+              <p>₹6-15 Lakhs per annum</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>📋 Program Overview</h3>
+            <p style="line-height: 1.8;">MBBS is the most prestigious undergraduate medical degree in India. This comprehensive program equips students with theoretical knowledge and practical skills required to diagnose, treat, and prevent diseases. We facilitate direct admissions to top medical colleges across India through management quota, NRI quota, and institutional quota.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>✅ Why Choose MBBS?</h3>
+            <ul>
+              <li>Most respected profession with high social status and respect in society</li>
+              <li>Opportunity to save lives and make a meaningful difference in healthcare</li>
+              <li>Excellent career prospects in India and abroad with multiple specialization options</li>
+              <li>Option for higher studies: MD/MS, super-specialization, research opportunities</li>
+              <li>High earning potential with private practice, hospital jobs, or teaching positions</li>
+              <li>Job security and stability in both government and private sectors</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>🎓 Specializations Available</h3>
+            <ul>
+              <li>General Medicine & Surgery - Foundation of medical practice</li>
+              <li>Pediatrics - Specializing in child healthcare and development</li>
+              <li>Orthopedics - Bone and joint disorders treatment</li>
+              <li>Cardiology - Heart and cardiovascular system specialists</li>
+              <li>Dermatology - Skin, hair, and nail disorder treatment</li>
+              <li>Radiology - Medical imaging and diagnostic procedures</li>
+              <li>Anesthesiology - Pain management and surgical support</li>
+              <li>Gynecology & Obstetrics - Women's health and reproductive medicine</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>🏥 Our MBBS Admission Services</h3>
+            <ul>
+              <li>Direct admission to NEET-qualified medical colleges across India</li>
+              <li>Management quota and institutional quota seat assistance</li>
+              <li>NRI quota admissions for eligible candidates</li>
+              <li>Complete documentation and application processing support</li>
+              <li>NEET counseling and seat allotment guidance</li>
+              <li>Admission to both government and private medical colleges</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <a href="/contact.php" class="btn btn-primary" style="margin-right: 1rem;">Apply for MBBS</a>
+            <a href="/universities.php" class="btn btn-secondary">View Medical Colleges</a>
+          </div>
+        </article>
+
+        <!-- B.TECH SECTION -->
+        <article id="btech" class="course-card course-section">
+          <div class="course-header">
+            <div class="course-icon-large" aria-hidden="true">⚙️</div>
+            <div>
+              <h2 id="btech-heading" style="margin-bottom: 0.5rem;">B.Tech - Bachelor of Technology</h2>
+              <p style="font-size: 1.125rem; color: var(--text-secondary); margin: 0;">Engineering education at India's top technical institutions across all major branches</p>
+            </div>
+          </div>
+
+          <div class="course-details">
+            <div class="detail-box">
+              <h4>Duration</h4>
+              <p>4 Years (8 Semesters)</p>
+            </div>
+            <div class="detail-box">
+              <h4>Eligibility</h4>
+              <p>10+2 with PCM (50% marks) + JEE/State CET</p>
+            </div>
+            <div class="detail-box">
+              <h4>Career Scope</h4>
+              <p>Engineer, Software Developer, Consultant</p>
+            </div>
+            <div class="detail-box">
+              <h4>Average Package</h4>
+              <p>₹4-25 Lakhs per annum</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>📋 Program Overview</h3>
+            <p style="line-height: 1.8;">B.Tech is India's premier undergraduate engineering degree, offering cutting-edge technical education across multiple specializations. This program combines theoretical foundations with practical applications, preparing students for challenging careers in technology, innovation, and research. We facilitate admissions to AICTE-approved institutions with excellent placement records.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>💻 Popular Branches</h3>
+            <ul>
+              <li>Computer Science Engineering (CSE) - Software development, AI, Machine Learning, Cloud Computing</li>
+              <li>Information Technology (IT) - Software applications, database management, cybersecurity</li>
+              <li>Electronics & Communication (ECE) - Telecommunications, embedded systems, VLSI design</li>
+              <li>Mechanical Engineering - Design, manufacturing, thermal systems, robotics</li>
+              <li>Civil Engineering - Construction, infrastructure, structural engineering</li>
+              <li>Electrical Engineering - Power systems, renewable energy, automation</li>
+              <li>Artificial Intelligence & Data Science - ML, Deep Learning, Big Data analytics</li>
+              <li>Aerospace Engineering - Aircraft design, space technology</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>✅ Career Opportunities</h3>
+            <ul>
+              <li>Software Engineer/Developer - Top IT companies like Google, Microsoft, Amazon, TCS, Infosys</li>
+              <li>Data Scientist & AI Engineer - Emerging high-demand roles in AI/ML</li>
+              <li>Core Engineering Jobs - Manufacturing, automotive, electronics industries</li>
+              <li>Consulting & Management - Technical consulting with top firms</li>
+              <li>Research & Development - Innovation and product development</li>
+              <li>Higher Studies - M.Tech, MS abroad, MBA for management roles</li>
+              <li>Entrepreneurship - Start your own tech venture or consulting firm</li>
+              <li>Government Jobs - PSUs, ISRO, DRDO, Railway, Defense</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>🏆 Why Choose B.Tech from Top Colleges?</h3>
+            <ul>
+              <li>Excellent placement opportunities with packages ranging from ₹4-50 Lakhs</li>
+              <li>Industry exposure through internships, projects, and collaborations</li>
+              <li>State-of-the-art laboratories and research facilities</li>
+              <li>Experienced faculty with industry and research backgrounds</li>
+              <li>Strong alumni networks in leading tech companies worldwide</li>
+              <li>Opportunities for international internships and exchange programs</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <a href="/contact.php" class="btn btn-primary" style="margin-right: 1rem;">Apply for B.Tech</a>
+            <a href="/universities.php" class="btn btn-secondary">View Engineering Colleges</a>
+          </div>
+        </article>
+
+        <!-- B.PHARMA SECTION -->
+        <article id="bpharma" class="course-card course-section">
+          <div class="course-header">
+            <div class="course-icon-large" aria-hidden="true">💊</div>
+            <div>
+              <h2 id="bpharma-heading" style="margin-bottom: 0.5rem;">B.Pharma - Bachelor of Pharmacy</h2>
+              <p style="font-size: 1.125rem; color: var(--text-secondary); margin: 0;">Excellence in pharmaceutical sciences and drug development education</p>
+            </div>
+          </div>
+
+          <div class="course-details">
+            <div class="detail-box">
+              <h4>Duration</h4>
+              <p>4 Years (8 Semesters)</p>
+            </div>
+            <div class="detail-box">
+              <h4>Eligibility</h4>
+              <p>10+2 with PCM/PCB (50% marks)</p>
+            </div>
+            <div class="detail-box">
+              <h4>Career Scope</h4>
+              <p>Pharmacist, Drug Inspector, Researcher</p>
+            </div>
+            <div class="detail-box">
+              <h4>Average Package</h4>
+              <p>₹3-8 Lakhs per annum</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>📋 Program Overview</h3>
+            <p style="line-height: 1.8;">B.Pharma is a comprehensive undergraduate program focusing on pharmaceutical sciences, drug formulation, medicinal chemistry, and pharmacology. This AICTE-approved course prepares students for diverse careers in the pharmaceutical industry, hospitals, research institutions, and regulatory bodies. The growing healthcare sector in India offers excellent opportunities for pharmacy graduates.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>🔬 Key Subjects & Specializations</h3>
+            <ul>
+              <li>Pharmaceutical Chemistry - Drug design, synthesis, and analysis</li>
+              <li>Pharmacology - Study of drug action and therapeutic effects</li>
+              <li>Pharmaceutics - Drug formulation and delivery systems</li>
+              <li>Pharmacognosy - Natural products and herbal medicines</li>
+              <li>Clinical Pharmacy - Patient care and medication management</li>
+              <li>Industrial Pharmacy - Large-scale drug manufacturing</li>
+              <li>Pharmaceutical Analysis - Quality control and assurance</li>
+              <li>Hospital Pharmacy - Healthcare institution pharmacy management</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>💼 Career Opportunities</h3>
+            <ul>
+              <li>Community & Hospital Pharmacist - Patient counseling and medication dispensing</li>
+              <li>Pharmaceutical Companies - Quality control, production, marketing roles</li>
+              <li>Drug Inspector - Regulatory and compliance positions in government</li>
+              <li>Clinical Research - Drug trials, research coordination in CROs</li>
+              <li>Medical Representative - Pharmaceutical sales and marketing</li>
+              <li>Drug Safety Officer - Pharmacovigilance and adverse event monitoring</li>
+              <li>Academic Career - Teaching in pharmacy colleges after M.Pharma/Ph.D</li>
+              <li>Entrepreneurship - Own pharmacy stores, pharmaceutical consultancy</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>✅ Why Choose B.Pharma?</h3>
+            <ul>
+              <li>Growing pharmaceutical industry in India with increasing job opportunities</li>
+              <li>Government job opportunities in hospitals, drug regulatory departments</li>
+              <li>Scope for higher studies: M.Pharma, MBA in Pharmaceutical Management</li>
+              <li>Option to start own pharmacy business with attractive margins</li>
+              <li>Research opportunities in drug development and biotechnology</li>
+              <li>International career prospects in pharmaceutical companies abroad</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <a href="/contact.php" class="btn btn-primary" style="margin-right: 1rem;">Apply for B.Pharma</a>
+            <a href="/universities.php" class="btn btn-secondary">View Pharmacy Colleges</a>
+          </div>
+        </article>
+
+        <!-- B.SC AGRICULTURE SECTION -->
+        <article id="agriculture" class="course-card course-section">
+          <div class="course-header">
+            <div class="course-icon-large" aria-hidden="true">🌾</div>
+            <div>
+              <h2 id="agriculture-heading" style="margin-bottom: 0.5rem;">B.Sc Agriculture - Agricultural Sciences</h2>
+              <p style="font-size: 1.125rem; color: var(--text-secondary); margin: 0;">Modern agricultural education for sustainable farming and agribusiness</p>
+            </div>
+          </div>
+
+          <div class="course-details">
+            <div class="detail-box">
+              <h4>Duration</h4>
+              <p>4 Years (8 Semesters)</p>
+            </div>
+            <div class="detail-box">
+              <h4>Eligibility</h4>
+              <p>10+2 with PCM/PCB/Agriculture (50% marks)</p>
+            </div>
+            <div class="detail-box">
+              <h4>Career Scope</h4>
+              <p>Agricultural Officer, Researcher, Entrepreneur</p>
+            </div>
+            <div class="detail-box">
+              <h4>Average Package</h4>
+              <p>₹3-7 Lakhs per annum</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>📋 Program Overview</h3>
+            <p style="line-height: 1.8;">B.Sc Agriculture is a comprehensive program covering all aspects of agricultural sciences, from crop production to agribusiness management. With India's focus on sustainable agriculture and food security, this course offers excellent career prospects in both public and private sectors. The program combines theoretical knowledge with extensive practical training in modern farming techniques.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>🌱 Specialization Areas</h3>
+            <ul>
+              <li>Agronomy - Crop production, soil management, and sustainable farming practices</li>
+              <li>Horticulture - Fruits, vegetables, ornamental plants cultivation</li>
+              <li>Soil Science - Soil health, fertility management, conservation</li>
+              <li>Plant Breeding & Genetics - Development of high-yield crop varieties</li>
+              <li>Agricultural Economics - Farm management, marketing, policy</li>
+              <li>Agricultural Extension - Farmer education and rural development</li>
+              <li>Entomology - Pest management and integrated pest control</li>
+              <li>Plant Pathology - Disease management in crops</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>💼 Career Opportunities</h3>
+            <ul>
+              <li>Agricultural Officer - Government departments, banks (NABARD, Cooperative banks)</li>
+              <li>Agribusiness Management - Food processing, seed companies, fertilizer industries</li>
+              <li>Agricultural Research - ICAR institutes, agricultural universities, research centers</li>
+              <li>Farm Management - Managing large-scale agricultural operations</li>
+              <li>Agricultural Consultant - Advisory services to farmers and agricultural businesses</li>
+              <li>Organic Farming Expert - Growing demand for organic produce consultancy</li>
+              <li>Teaching & Academics - Agricultural colleges and institutions</li>
+              <li>Entrepreneurship - Contract farming, export business, agricultural startups</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>✅ Why Choose B.Sc Agriculture?</h3>
+            <ul>
+              <li>Government job opportunities in agriculture departments, banks</li>
+              <li>Growing agribusiness sector with numerous startup opportunities</li>
+              <li>Contribution to food security and sustainable development</li>
+              <li>Scope for organic farming and eco-friendly agricultural practices</li>
+              <li>International opportunities in agricultural consulting and research</li>
+              <li>Higher studies: M.Sc Agriculture, MBA in Agribusiness, Ph.D programs</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <a href="/contact.php" class="btn btn-primary" style="margin-right: 1rem;">Apply for Agriculture</a>
+            <a href="/universities.php" class="btn btn-secondary">View Agriculture Colleges</a>
+          </div>
+        </article>
+
+        <!-- MBA SECTION -->
+        <article id="mba" class="course-card course-section">
+          <div class="course-header">
+            <div class="course-icon-large" aria-hidden="true">📊</div>
+            <div>
+              <h2 id="mba-heading" style="margin-bottom: 0.5rem;">MBA & PGDM - Master of Business Administration</h2>
+              <p style="font-size: 1.125rem; color: var(--text-secondary); margin: 0;">Leadership and management education at India's top B-schools</p>
+            </div>
+          </div>
+
+          <div class="course-details">
+            <div class="detail-box">
+              <h4>Duration</h4>
+              <p>2 Years (4 Semesters)</p>
+            </div>
+            <div class="detail-box">
+              <h4>Eligibility</h4>
+              <p>Graduation (50% marks) + CAT/MAT/XAT/CMAT</p>
+            </div>
+            <div class="detail-box">
+              <h4>Career Scope</h4>
+              <p>Manager, Consultant, Business Analyst</p>
+            </div>
+            <div class="detail-box">
+              <h4>Average Package</h4>
+              <p>₹6-30 Lakhs per annum</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>📋 Program Overview</h3>
+            <p style="line-height: 1.8;">MBA/PGDM is India's most sought-after postgraduate management degree, preparing students for leadership roles in business and industry. This comprehensive program covers all aspects of business management, from strategy and finance to marketing and operations. We facilitate admissions to AICTE-approved B-schools with excellent placement records and strong industry connections.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>📈 Specializations Available</h3>
+            <ul>
+              <li>Finance - Investment banking, financial analysis, corporate finance, wealth management</li>
+              <li>Marketing - Brand management, digital marketing, sales, consumer behavior</li>
+              <li>Human Resources - Talent management, organizational development, labor relations</li>
+              <li>Operations & Supply Chain - Logistics, production management, quality control</li>
+              <li>Information Technology - IT strategy, systems management, digital transformation</li>
+              <li>International Business - Global trade, export-import, international marketing</li>
+              <li>Business Analytics - Data-driven decision making, predictive analytics</li>
+              <li>Entrepreneurship - Startup management, venture creation, business innovation</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>💼 Career Opportunities</h3>
+            <ul>
+              <li>Management Consultant - Strategy consulting with firms like McKinsey, BCG, Deloitte</li>
+              <li>Investment Banking - Financial services, M&A, equity research</li>
+              <li>Product Manager - Tech companies, FMCG, consumer goods</li>
+              <li>Marketing Manager - Brand management, digital marketing, market research</li>
+              <li>Business Analyst - Data analysis, business intelligence, strategy</li>
+              <li>Operations Manager - Supply chain, logistics, production management</li>
+              <li>HR Manager - Talent acquisition, compensation, organizational development</li>
+              <li>Entrepreneur - Start your own venture with management expertise</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>✅ Why Choose MBA/PGDM?</h3>
+            <ul>
+              <li>Significant salary jump - Average 100-200% increase post-MBA</li>
+              <li>Career transition - Switch industries or functions with management degree</li>
+              <li>Leadership skills - Develop strategic thinking and decision-making abilities</li>
+              <li>Network building - Strong alumni networks across industries</li>
+              <li>Entrepreneurship support - Resources and mentorship for startups</li>
+              <li>Global opportunities - International placements and exchange programs</li>
+              <li>Industry exposure - Live projects, case studies, corporate interactions</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>🏆 Top MBA Entrance Exams We Guide For</h3>
+            <ul>
+              <li>CAT (Common Admission Test) - For IIMs and top B-schools</li>
+              <li>MAT (Management Aptitude Test) - All-India level exam</li>
+              <li>XAT (Xavier Aptitude Test) - For XLRI and associate institutes</li>
+              <li>CMAT (Common Management Admission Test) - AICTE approved colleges</li>
+              <li>SNAP (Symbiosis National Aptitude Test) - Symbiosis institutes</li>
+              <li>MH-CET - Maharashtra state colleges</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <a href="/contact.php" class="btn btn-primary" style="margin-right: 1rem;">Apply for MBA</a>
+            <a href="/universities.php" class="btn btn-secondary">View B-Schools</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%); color: var(--white);" aria-labelledby="cta-heading">
+      <div class="container text-center">
+        <h2 id="cta-heading" style="color: var(--white); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Not Sure Which Course to Choose?</h2>
+        <p style="font-size: 1.25rem; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.9);">Book a free counseling session with our experts. We'll guide you based on your interests, aptitude, and career goals.</p>
+        <a href="/contact.php" class="btn btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Get Free Career Counseling</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4>About EDU Career India</h4>
+          <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">Your trusted partner for career counseling and direct admissions to top colleges across India and abroad. Your Dream, Our Mission.</p>
+          <p style="color: rgba(255, 255, 255, 0.8);">📞 <a href="tel:+91XXXXXXXXXX" style="color: rgba(255, 255, 255, 0.8);">+91-XXXXXXXXXX</a></p>
+          <p style="color: rgba(255, 255, 255, 0.8);">✉️ <a href="mailto:info@educareerindia.com" style="color: rgba(255, 255, 255, 0.8);">info@educareerindia.com</a></p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.php">About Us</a></li>
+            <li><a href="/courses.php">Courses</a></li>
+            <li><a href="/universities.php">Universities</a></li>
+            <li><a href="/contact.php">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Our Courses</h4>
+          <ul>
+            <li><a href="/courses.php#mbbs">MBBS Admission</a></li>
+            <li><a href="/courses.php#btech">B.Tech Engineering</a></li>
+            <li><a href="/courses.php#bpharma">B.Pharma Programs</a></li>
+            <li><a href="/courses.php#agriculture">B.Sc Agriculture</a></li>
+            <li><a href="/courses.php#mba">MBA & PGDM</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Study Destinations</h4>
+          <ul>
+            <li><a href="/universities.php#india">India</a></li>
+            <li><a href="/universities.php#usa">United States</a></li>
+            <li><a href="/universities.php#uk">United Kingdom</a></li>
+            <li><a href="/universities.php#australia">Australia</a></li>
+            <li><a href="/universities.php#canada">Canada</a></li>
+            <li><a href="/universities.php#dubai">Dubai</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 EDU Career India. All rights reserved. | <a href="/privacy-policy.php" style="color: rgba(255, 255, 255, 0.7);">Privacy Policy</a> | <a href="/terms-conditions.php" style="color: rgba(255, 255, 255, 0.7);">Terms & Conditions</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       JAVASCRIPT
+       ============================================ -->
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

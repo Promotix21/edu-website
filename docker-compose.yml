@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # Apache Web Server with PHP
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: educareer_web
+    ports:
+      - "8080:80"  # Map host port 8080 to container port 80
+    volumes:
+      - ./:/var/www/html  # Mount current directory to Apache document root
+      - ./uploads:/var/www/html/uploads  # Persistent uploads directory
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+      - PHP_UPLOAD_MAX_FILESIZE=10M
+      - PHP_POST_MAX_SIZE=10M
+    depends_on:
+      - db
+    networks:
+      - educareer_network
+    restart: unless-stopped
+
+  # MySQL Database Server
+  db:
+    image: mysql:8.0
+    container_name: educareer_db
+    ports:
+      - "3307:3306"  # Map host port 3307 to container port 3306 (avoid conflicts)
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_2025
+      MYSQL_DATABASE: educareer_db
+      MYSQL_USER: educareer_user
+      MYSQL_PASSWORD: educareer_pass_2025
+    volumes:
+      - db_data:/var/lib/mysql  # Persistent database storage
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql  # Initialize DB on first run
+    networks:
+      - educareer_network
+    restart: unless-stopped
+
+  # phpMyAdmin (optional - for database management)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: educareer_phpmyadmin
+    ports:
+      - "8081:80"  # Access phpMyAdmin at http://localhost:8081
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root_password_2025
+      UPLOAD_LIMIT: 10M
+    depends_on:
+      - db
+    networks:
+      - educareer_network
+    restart: unless-stopped
+
+# Named volumes for persistent data
+volumes:
+  db_data:
+    driver: local
+
+# Custom network for service communication
+networks:
+  educareer_network:
+    driver: bridge
