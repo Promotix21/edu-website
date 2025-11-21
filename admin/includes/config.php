@@ -18,9 +18,13 @@ define('DEV_MODE', true);
 // Admin-specific configuration
 define('ADMIN_URL', SITE_URL . 'admin');
 
-// Upload paths
-define('UPLOAD_DIR', dirname(dirname(__DIR__)) . '/uploads/');
-define('UPLOAD_URL', '/uploads/');
+// Upload paths (only define if not already defined in main config)
+if (!defined('UPLOAD_DIR')) {
+    define('UPLOAD_DIR', dirname(dirname(__DIR__)) . '/uploads/');
+}
+if (!defined('UPLOAD_URL')) {
+    define('UPLOAD_URL', '/uploads/');
+}
 define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024); // 10MB
 
 // Allowed image types
