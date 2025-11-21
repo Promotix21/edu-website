@@ -297,31 +297,31 @@ $statExperience = getStat('years_experience', 15);
               <img src="/assets/images/icon-expert-counselors.png" alt="Expert Counselors" loading="lazy">
             </div>
             <h3 class="animate-text">Expert Guidance</h3>
-            <p>Personalized counseling tailored to your academic profile and career aspirations.</p>
+            <p>Personalized counseling tailored to your profile and goals.</p>
           </article>
 
           <article class="feature-card-modern">
             <div class="feature-icon-modern">
               <img src="/assets/images/icon-proven-track-record.png" alt="Proven Track Record" loading="lazy">
             </div>
-            <h3 class="animate-text">Proven Track Record</h3>
-            <p><?php echo number_format($statStudents); ?>+ successful admissions with <?php echo $statSuccess; ?>% success rate.</p>
+            <h3 class="animate-text">Proven Success</h3>
+            <p><?php echo number_format($statStudents); ?>+ students placed with <?php echo $statSuccess; ?>% success rate.</p>
           </article>
 
           <article class="feature-card-modern">
             <div class="feature-icon-modern">
               <img src="/assets/images/icon-global-reach.png" alt="Global Reach" loading="lazy">
             </div>
-            <h3 class="animate-text">Global Reach</h3>
-            <p>Access to premium institutions across 6 countries worldwide.</p>
+            <h3 class="animate-text">Global Network</h3>
+            <p>Premium institutions across 6 countries worldwide.</p>
           </article>
 
           <article class="feature-card-modern">
             <div class="feature-icon-modern">
               <img src="/assets/images/icon-end-to-end-support.png" alt="End-to-End Support" loading="lazy">
             </div>
-            <h3 class="animate-text">End-to-End Support</h3>
-            <p>Complete assistance from college selection to admission completion.</p>
+            <h3 class="animate-text">Complete Support</h3>
+            <p>End-to-end assistance from selection to admission.</p>
           </article>
         </div>
       </div>
@@ -349,11 +349,11 @@ $statExperience = getStat('years_experience', 15);
                 <img src="/assets/images/service-icon-mbbs.png" alt="MBBS Icon" loading="lazy">
               </div>
               <h3 class="animate-text">MBBS Programs</h3>
-              <p>Direct admission to top medical colleges across India and abroad.</p>
+              <p>Direct admission to premier medical colleges in India and abroad.</p>
               <ul class="service-features">
                 <li>NEET Counseling Support</li>
-                <li>Management Quota Guidance</li>
-                <li>Top Medical Colleges</li>
+                <li>Management Quota</li>
+                <li>Top Medical Institutions</li>
               </ul>
             </div>
           </article>
@@ -371,10 +371,10 @@ $statExperience = getStat('years_experience', 15);
                 <img src="/assets/images/service-icon-engineering.png" alt="Engineering Icon" loading="lazy">
               </div>
               <h3 class="animate-text">B.Tech Engineering</h3>
-              <p>Secure seats in prestigious engineering colleges across all branches.</p>
+              <p>Secure seats in prestigious engineering colleges across all streams.</p>
               <ul class="service-features">
-                <li>All Engineering Branches</li>
-                <li>Top AICTE Colleges</li>
+                <li>All Engineering Streams</li>
+                <li>AICTE Approved Colleges</li>
                 <li>Placement Assistance</li>
               </ul>
             </div>
@@ -396,7 +396,7 @@ $statExperience = getStat('years_experience', 15);
               <p>AICTE approved pharmacy colleges with excellent placement records.</p>
               <ul class="service-features">
                 <li>AICTE Approved Colleges</li>
-                <li>Industry Partnerships</li>
+                <li>Industry Collaborations</li>
                 <li>Research Opportunities</li>
               </ul>
             </div>
@@ -415,11 +415,11 @@ $statExperience = getStat('years_experience', 15);
                 <img src="/assets/images/service-icon-agriculture.png" alt="Agriculture Icon" loading="lazy">
               </div>
               <h3 class="animate-text">B.Sc Agriculture</h3>
-              <p>Gateway to agricultural sciences at top universities.</p>
+              <p>Gateway to agricultural sciences at premier universities nationwide.</p>
               <ul class="service-features">
-                <li>Agricultural Universities</li>
-                <li>Modern Farming Tech</li>
-                <li>Government Support</li>
+                <li>Top Agricultural Universities</li>
+                <li>Modern Farming Technology</li>
+                <li>Government Scholarships</li>
               </ul>
             </div>
           </article>
@@ -437,11 +437,11 @@ $statExperience = getStat('years_experience', 15);
                 <img src="/assets/images/service-icon-mba.png" alt="MBA Icon" loading="lazy">
               </div>
               <h3 class="animate-text">MBA & PGDM</h3>
-              <p>Admission to India's leading B-schools with excellent ROI.</p>
+              <p>Admission to India's premier B-schools with excellent career ROI.</p>
               <ul class="service-features">
                 <li>Top B-Schools</li>
                 <li>All Specializations</li>
-                <li>Placement Support</li>
+                <li>Career Placement Support</li>
               </ul>
             </div>
           </article>
