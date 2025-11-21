@@ -55,12 +55,22 @@ ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_secure', 0); // Set to 1 if using HTTPS
 
-// Error reporting (disable in production)
-// For shared hosting, set to 0 after testing
+// Error reporting - FULL DEBUG MODE
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // Change to 0 for production
+ini_set('display_errors', 1);  // SHOW ERRORS ON SCREEN
+ini_set('display_startup_errors', 1);
 ini_set('log_errors', 1);
-ini_set('error_log', BASE_PATH . '/error.log');
+ini_set('error_log', BASE_PATH . '/php_errors.log');
+
+// Debug log
+file_put_contents(BASE_PATH . '/debug.log',
+    "\n=== Config loaded: " . date('Y-m-d H:i:s') . " ===\n" .
+    "Is Docker: " . ($isDocker ? 'YES' : 'NO') . "\n" .
+    "DB_HOST: " . DB_HOST . "\n" .
+    "DB_NAME: " . DB_NAME . "\n" .
+    "DB_USER: " . DB_USER . "\n",
+    FILE_APPEND
+);
 
 // ============================================
 // DATABASE CONNECTION
@@ -77,11 +87,20 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    // Log error but don't expose details to users
+    // Log error
     error_log("Database connection failed: " . $e->getMessage());
+    file_put_contents(BASE_PATH . '/debug.log',
+        "DB CONNECTION ERROR: " . $e->getMessage() . "\n",
+        FILE_APPEND
+    );
 
-    // Show user-friendly error
-    die("Sorry, we're experiencing technical difficulties. Please try again later.");
+    // SHOW FULL ERROR FOR DEBUGGING
+    die("<h1>Database Connection Error</h1><pre>" .
+        "Error: " . $e->getMessage() . "\n" .
+        "Host: " . DB_HOST . "\n" .
+        "Database: " . DB_NAME . "\n" .
+        "User: " . DB_USER . "\n" .
+        "</pre>");
 }
 
 // ============================================
