@@ -1,9 +1,10 @@
 <?php
 /**
  * EDU Career India - Admin Helper Functions
+ * Note: config.php is already loaded by the calling script
  */
 
-require_once __DIR__ . '/config.php';
+// config.php is already included - DO NOT include again
 
 /**
  * Upload image file

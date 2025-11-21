@@ -13,12 +13,16 @@ RewriteBase /
 # RewriteCond %{HTTP_HOST} !^www\. [NC]
 # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Redirect .php extension to clean URLs (301 permanent redirect)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
 # Remove .php extension for clean URLs
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [L]
 
-# Redirect old .html to .php
+# Redirect old .html to .php (then to clean URL)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)\.html$ /$1.php [R=301,L]
 </IfModule>
@@ -33,18 +37,6 @@ RewriteRule ^(.*)\.html$ /$1.php [R=301,L]
 
 # Disable directory browsing
 Options -Indexes
-
-# Protect config files
-<FilesMatch "^(config\.php|\.env)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Protect sensitive directories
-<DirectoryMatch "^.*/admin/includes">
-    Order Allow,Deny
-    Deny from all
-</DirectoryMatch>
 
 # PHP settings
 <IfModule mod_php7.c>
