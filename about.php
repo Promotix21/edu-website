@@ -4,37 +4,8 @@
  * Dynamic content from database
  */
 
-// Database configuration
-define('DB_HOST', 'db');
-define('DB_NAME', 'educareer_db');
-define('DB_USER', 'educareer_user');
-define('DB_PASS', 'educareer_pass_2025');
-
-// Connect to database
-try {
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-} catch (PDOException $e) {
-    // Fallback if database not available
-    $pdo = null;
-}
-
-// Helper function to get statistics
-function getStat($key, $default = 0) {
-    global $pdo;
-    if (!$pdo) return $default;
-
-    try {
-        $stmt = $pdo->prepare("SELECT stat_value FROM site_statistics WHERE stat_key = ?");
-        $stmt->execute([$key]);
-        $result = $stmt->fetch();
-        return $result ? $result['stat_value'] : $default;
-    } catch (Exception $e) {
-        return $default;
-    }
-}
+// Include main configuration
+require_once __DIR__ . '/config.php';
 
 // Get statistics
 $statStudents = getStat('students_counseled', 5000);

@@ -1,8 +1,11 @@
 <?php
 /**
  * EDU Career India - Admin Configuration
- * Database connection and global settings
+ * Uses main site config for database connection
  */
+
+// Include main site configuration
+require_once dirname(dirname(__DIR__)) . '/config.php';
 
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
@@ -21,42 +24,20 @@ if (DEV_MODE) {
     ini_set('display_errors', 0);
 }
 
-// Database configuration
-define('DB_HOST', 'db');  // Docker service name
-define('DB_NAME', 'educareer_db');
-define('DB_USER', 'educareer_user');
-define('DB_PASS', 'educareer_pass_2025');
-define('DB_CHARSET', 'utf8mb4');
-
-// Site configuration
-define('SITE_NAME', 'EDU Career India');
-define('SITE_URL', 'http://localhost:8080');
-define('ADMIN_URL', SITE_URL . '/admin');
+// Admin-specific configuration
+define('ADMIN_URL', SITE_URL . 'admin');
 
 // Upload paths
-define('UPLOAD_DIR', __DIR__ . '/../../uploads/');
-define('UPLOAD_URL', SITE_URL . '/uploads/');
+define('UPLOAD_DIR', dirname(dirname(__DIR__)) . '/uploads/');
+define('UPLOAD_URL', '/uploads/');
 define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024); // 10MB
 
 // Allowed image types
 define('ALLOWED_IMAGE_TYPES', ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif']);
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp', 'gif']);
 
-// Database connection using PDO
-try {
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
-    $pdo = new PDO($dsn, DB_USER, DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false
-    ]);
-} catch (PDOException $e) {
-    if (DEV_MODE) {
-        die("Database Connection Failed: " . $e->getMessage());
-    } else {
-        die("Database connection error. Please try again later.");
-    }
-}
+// $pdo is already defined in main config.php and ready to use
+// No additional database connection needed
 
 // Helper function to sanitize output
 function escape($string) {
