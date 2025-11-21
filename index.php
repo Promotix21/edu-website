@@ -7,9 +7,37 @@
 // Include main configuration
 require_once __DIR__ . '/config.php';
 
-// Get dynamic content (with fallbacks)
-$heroTitle = getContent('home', 'hero', 'title', 'Your Gateway to Top Universities in India & Abroad');
-$heroSubtitle = getContent('home', 'hero', 'subtitle', 'Expert career counseling and direct admission guidance for MBBS, B.Tech, B.Pharma, Agriculture, and MBA programs.');
+// Get hero slider slides from database
+try {
+    $stmt = $pdo->query("SELECT * FROM hero_slider WHERE is_active = 1 ORDER BY display_order ASC");
+    $heroSlides = $stmt->fetchAll();
+} catch (PDOException $e) {
+    // Fallback to default slide if table doesn't exist yet
+    $heroTitle = getContent('home', 'hero', 'title', 'Your Gateway to Top Universities in India & Abroad');
+    $heroSubtitle = getContent('home', 'hero', 'subtitle', 'Expert career counseling and direct admission guidance for MBBS, B.Tech, B.Pharma, Agriculture, and MBA programs.');
+    $heroSlides = [[
+        'id' => 1,
+        'title' => $heroTitle,
+        'subtitle' => $heroSubtitle,
+        'image_url' => '/assets/images/hero-banner-home.jpg',
+        'button_text' => 'Book Free Consultation',
+        'button_link' => '/contact',
+        'is_active' => 1
+    ]];
+}
+
+// Get service images from database (with fallbacks)
+$serviceImages = [
+    'mbbs' => getContent('home', 'services', 'mbbs_image') ?: '/assets/images/service-mbbs.jpg',
+    'btech' => getContent('home', 'services', 'btech_image') ?: '/assets/images/service-btech.jpg',
+    'bpharma' => getContent('home', 'services', 'bpharma_image') ?: '/assets/images/service-bpharma.jpg',
+    'agriculture' => getContent('home', 'services', 'agriculture_image') ?: '/assets/images/service-agriculture.jpg',
+    'mba' => getContent('home', 'services', 'mba_image') ?: '/assets/images/service-mba.jpg'
+];
+
+// Get logo from settings
+$siteLogoUrl = getContent('settings', 'branding', 'logo_url');
+$siteName = getContent('settings', 'branding', 'site_name') ?: 'EDU Career India';
 
 // Get statistics
 $statStudents = getStat('students_counseled', 5000);
@@ -18,7 +46,7 @@ $statInstitutions = getStat('partner_institutions', 200);
 $statExperience = getStat('years_experience', 15);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="home">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,10 +84,10 @@ $statExperience = getStat('years_experience', 15);
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
 
-  <!-- FONTS -->
+  <!-- FONTS - Modern Professional Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="/assets/css/modern.css">
@@ -101,16 +129,22 @@ $statExperience = getStat('years_experience', 15);
   }
   </script>
 </head>
-<body>
+<body class="home">
 
   <!-- HEADER -->
   <header class="header" role="banner">
     <nav class="navbar container" role="navigation">
-      <a href="/" class="logo">
-        <span class="logo-edu">EDU</span>
-        <span class="logo-career">Career</span>
-        <span class="logo-india">India</span>
-      </a>
+      <?php if ($siteLogoUrl): ?>
+        <a href="/" class="logo logo-image">
+          <img src="<?php echo htmlspecialchars($siteLogoUrl); ?>" alt="<?php echo htmlspecialchars($siteName); ?>" class="site-logo-img">
+        </a>
+      <?php else: ?>
+        <a href="/" class="logo">
+          <span class="logo-edu">EDU</span>
+          <span class="logo-career">Career</span>
+          <span class="logo-india">India</span>
+        </a>
+      <?php endif; ?>
       <ul class="nav-menu" role="menubar">
         <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
         <li><a href="/about" class="nav-link">About Us</a></li>
@@ -130,62 +164,27 @@ $statExperience = getStat('years_experience', 15);
     <!-- MODERN HERO SECTION WITH SLIDER -->
     <section class="hero-modern">
       <div class="hero-slider">
-        <!-- Slide 1 -->
-        <div class="hero-slide active" style="background-image: url('/assets/images/hero-banner-home.jpg');">
-          <div class="hero-overlay"></div>
-          <div class="container">
-            <div class="hero-content">
-              <h1 class="hero-title animate-text"><?php echo htmlspecialchars($heroTitle); ?></h1>
-              <p class="hero-subtitle animate-text"><?php echo htmlspecialchars($heroSubtitle); ?></p>
-              <div class="hero-cta">
-                <a href="/contact" class="btn btn-primary btn-glow">Book Free Consultation</a>
-                <a href="/courses" class="btn btn-outline-white">Explore Courses</a>
+        <?php
+        $slideIndex = 0;
+        foreach ($heroSlides as $slide):
+          $isActive = ($slideIndex === 0) ? 'active' : '';
+          $slideIndex++;
+        ?>
+          <div class="hero-slide <?php echo $isActive; ?>" style="background-image: url('<?php echo htmlspecialchars($slide['image_url']); ?>');">
+            <div class="hero-overlay"></div>
+            <div class="container">
+              <div class="hero-content">
+                <h1 class="hero-title animate-text"><?php echo htmlspecialchars($slide['title']); ?></h1>
+                <p class="hero-subtitle animate-text"><?php echo htmlspecialchars($slide['subtitle']); ?></p>
+                <div class="hero-cta">
+                  <a href="<?php echo htmlspecialchars($slide['button_link']); ?>" class="btn btn-primary btn-glow">
+                    <?php echo htmlspecialchars($slide['button_text']); ?>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Slide 2 - MBBS -->
-        <div class="hero-slide" style="background-image: url('/assets/images/hero-banner-mbbs.jpg');">
-          <div class="hero-overlay"></div>
-          <div class="container">
-            <div class="hero-content">
-              <h1 class="hero-title animate-text">Direct MBBS Admission</h1>
-              <p class="hero-subtitle animate-text">Secure your medical career with top colleges across India</p>
-              <div class="hero-cta">
-                <a href="/courses#mbbs" class="btn btn-primary btn-glow">Explore MBBS Programs</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 3 - B.Tech -->
-        <div class="hero-slide" style="background-image: url('/assets/images/hero-banner-engineering.jpg');">
-          <div class="hero-overlay"></div>
-          <div class="container">
-            <div class="hero-content">
-              <h1 class="hero-title animate-text">Engineering Your Future</h1>
-              <p class="hero-subtitle animate-text">B.Tech admissions in top engineering colleges</p>
-              <div class="hero-cta">
-                <a href="/courses#btech" class="btn btn-primary btn-glow">Explore B.Tech Programs</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 4 - Study Abroad -->
-        <div class="hero-slide" style="background-image: url('/assets/images/hero-banner-study-abroad.jpg');">
-          <div class="hero-overlay"></div>
-          <div class="container">
-            <div class="hero-content">
-              <h1 class="hero-title animate-text">Study Abroad Dreams</h1>
-              <p class="hero-subtitle animate-text">USA, UK, Canada, Australia - Your global education partner</p>
-              <div class="hero-cta">
-                <a href="/universities" class="btn btn-primary btn-glow">Explore Destinations</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
 
       <!-- Slider Controls -->
@@ -340,7 +339,7 @@ $statExperience = getStat('years_experience', 15);
           <!-- MBBS -->
           <article class="service-card">
             <div class="service-image">
-              <img src="/assets/images/service-mbbs.jpg" alt="MBBS Programs" loading="lazy">
+              <img src="<?php echo htmlspecialchars($serviceImages['mbbs']); ?>" alt="MBBS Programs" loading="lazy">
               <div class="service-overlay">
                 <a href="/courses#mbbs" class="service-link">Explore MBBS</a>
               </div>
@@ -362,7 +361,7 @@ $statExperience = getStat('years_experience', 15);
           <!-- B.Tech -->
           <article class="service-card">
             <div class="service-image">
-              <img src="/assets/images/service-btech.jpg" alt="B.Tech Engineering" loading="lazy">
+              <img src="<?php echo htmlspecialchars($serviceImages['btech']); ?>" alt="B.Tech Engineering" loading="lazy">
               <div class="service-overlay">
                 <a href="/courses#btech" class="service-link">Explore B.Tech</a>
               </div>
@@ -384,7 +383,7 @@ $statExperience = getStat('years_experience', 15);
           <!-- B.Pharma -->
           <article class="service-card">
             <div class="service-image">
-              <img src="/assets/images/service-bpharma.jpg" alt="B.Pharma Programs" loading="lazy">
+              <img src="<?php echo htmlspecialchars($serviceImages['bpharma']); ?>" alt="B.Pharma Programs" loading="lazy">
               <div class="service-overlay">
                 <a href="/courses#bpharma" class="service-link">Explore B.Pharma</a>
               </div>
@@ -406,7 +405,7 @@ $statExperience = getStat('years_experience', 15);
           <!-- Agriculture -->
           <article class="service-card">
             <div class="service-image">
-              <img src="/assets/images/service-agriculture.jpg" alt="B.Sc Agriculture" loading="lazy">
+              <img src="<?php echo htmlspecialchars($serviceImages['agriculture']); ?>" alt="B.Sc Agriculture" loading="lazy">
               <div class="service-overlay">
                 <a href="/courses#agriculture" class="service-link">Explore Agriculture</a>
               </div>
@@ -428,7 +427,7 @@ $statExperience = getStat('years_experience', 15);
           <!-- MBA -->
           <article class="service-card">
             <div class="service-image">
-              <img src="/assets/images/service-mba.jpg" alt="MBA & PGDM" loading="lazy">
+              <img src="<?php echo htmlspecialchars($serviceImages['mba']); ?>" alt="MBA & PGDM" loading="lazy">
               <div class="service-overlay">
                 <a href="/courses#mba" class="service-link">Explore MBA</a>
               </div>
@@ -622,6 +621,7 @@ $statExperience = getStat('years_experience', 15);
   </footer>
 
   <!-- JAVASCRIPT -->
+  <script src="/assets/js/header-scroll.js" defer></script>
   <script src="/assets/js/lenis-scroll.js" defer></script>
   <script src="/assets/js/animations.js" defer></script>
   <script src="/assets/js/globe.js" defer></script>

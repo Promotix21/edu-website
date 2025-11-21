@@ -204,7 +204,13 @@
         this.cardsPerView = 1;
       }
 
-      this.cardWidth = this.cards[0]?.offsetWidth + 32 || 400; // card width + gap
+      // Get actual card width including gap (2rem = 32px)
+      const card = this.cards[0];
+      if (card) {
+        this.cardWidth = card.offsetWidth + 32; // card width + gap
+      } else {
+        this.cardWidth = 412; // fallback: 380px + 32px gap
+      }
     }
 
     setupInfiniteLoop() {
@@ -227,7 +233,13 @@
     }
 
     updateCarousel(animate = true) {
-      const translateX = -(this.currentIndex * this.cardWidth);
+      // Calculate offset to center the visible cards
+      const containerWidth = this.carousel.offsetWidth;
+      const visibleCardsWidth = this.cardsPerView * this.cardWidth - 32; // Subtract one gap
+      const centerOffset = (containerWidth - visibleCardsWidth) / 2;
+
+      // Calculate translation with centering
+      const translateX = centerOffset - (this.currentIndex * this.cardWidth);
 
       if (animate) {
         this.track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -236,6 +248,7 @@
       }
 
       this.track.style.transform = `translateX(${translateX}px)`;
+      this.track.style.justifyContent = 'flex-start'; // Override centering when scrolling
     }
 
     next() {

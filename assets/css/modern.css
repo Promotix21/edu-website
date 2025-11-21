@@ -30,9 +30,9 @@
   --spacing-lg: 4rem;
   --spacing-xl: 6rem;
 
-  /* Typography */
+  /* Typography - Modern Professional Fonts */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Poppins', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
 
   /* Shadows */
   --shadow-sm: 0 2px 8px rgba(37, 99, 235, 0.08);
@@ -83,7 +83,9 @@ html.lenis {
 body {
   font-family: var(--font-primary);
   color: var(--text-primary);
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
   background: var(--white);
   overflow-x: hidden;
 }
@@ -109,12 +111,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
   color: var(--dark);
+  letter-spacing: -0.02em; /* Tighter letter-spacing for modern look */
 }
 
-h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
-h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h3 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
-h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+/* Reduced font sizes for better proportions */
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
 
 /* Animated text elements (for SplitType.js + GSAP) */
 .animate-text {
@@ -185,7 +189,36 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s var(--transition-smooth);
+  transition: all 0.4s var(--transition-smooth);
+}
+
+/* Transparent header on homepage (before scroll) */
+.header.transparent {
+  background: rgba(15, 23, 42, 0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: none;
+}
+
+.header.transparent .nav-link {
+  color: var(--white);
+}
+
+.header.transparent .nav-link:hover {
+  color: var(--secondary-gold);
+}
+
+.header.transparent .nav-link::after {
+  background: var(--secondary-gold);
+}
+
+.header.transparent .logo-edu,
+.header.transparent .logo-career,
+.header.transparent .logo-india {
+  color: var(--white);
+}
+
+.header.transparent .mobile-toggle span {
+  background: var(--white);
 }
 
 .navbar {
@@ -202,6 +235,29 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
   display: flex;
   gap: 0.5rem;
   align-items: center;
+}
+
+.logo-image {
+  display: block;
+}
+
+.site-logo-img {
+  height: 50px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.site-logo-img:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .site-logo-img {
+    height: 40px;
+    max-width: 150px;
+  }
 }
 
 .logo-edu {
@@ -274,6 +330,7 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
   height: 100vh;
   min-height: 700px;
   overflow: hidden;
+  margin-top: 0; /* Ensure hero starts at top */
 }
 
 .hero-slider {
@@ -321,11 +378,12 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(2.25rem, 5vw, 3.75rem); /* Reduced from 5rem to 3.75rem */
   margin-bottom: 1.5rem;
-  font-weight: 800;
-  line-height: 1.1;
+  font-weight: 700; /* Reduced from 800 to 700 for elegance */
+  line-height: 1.15;
   color: var(--white);
+  letter-spacing: -0.03em; /* Tighter for modern aesthetic */
 }
 
 .hero-subtitle {
@@ -542,10 +600,25 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns on desktop */
   gap: 4rem;
   position: relative;
   z-index: 1;
+}
+
+/* Responsive stats grid */
+@media (max-width: 1199px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
 }
 
 .stat-card {
@@ -671,9 +744,24 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 
 .features-grid-modern {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns on desktop */
   gap: 3rem;
   margin-top: 4rem;
+}
+
+/* Responsive grid for tablets and mobile */
+@media (max-width: 1199px) {
+  .features-grid-modern {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-grid-modern {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 2rem;
+  }
 }
 
 .feature-card-modern {
@@ -882,17 +970,49 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
   position: relative;
   margin-top: 4rem;
   padding: 2rem 0;
+  overflow: hidden;
 }
 
 .testimonial-track {
   display: flex;
   gap: 2rem;
-  overflow-x: hidden;
   padding: 1rem;
+  justify-content: center; /* Center the cards initially */
+  align-items: flex-start;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* On desktop, show 3 cards - center them */
+@media (min-width: 1200px) {
+  .testimonials-carousel {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testimonial-track {
+    justify-content: center;
+  }
+}
+
+/* On tablets, show 2 cards */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .testimonial-track {
+    justify-content: center;
+  }
+}
+
+/* On mobile, show 1 card centered */
+@media (max-width: 767px) {
+  .testimonial-track {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 .testimonial-card {
-  min-width: 380px;
+  flex: 0 0 auto; /* Don't grow or shrink */
+  width: 380px; /* Fixed width instead of min-width */
   background: var(--white);
   padding: 3rem;
   border-radius: var(--radius-xl);
@@ -901,6 +1021,20 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
   flex-direction: column;
   gap: 2rem;
   transition: all 0.4s ease;
+}
+
+/* Responsive card width */
+@media (max-width: 1199px) {
+  .testimonial-card {
+    width: 350px;
+  }
+}
+
+@media (max-width: 767px) {
+  .testimonial-card {
+    width: 100%;
+    max-width: 350px;
+  }
 }
 
 .testimonial-card:hover {
@@ -1149,14 +1283,7 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     bottom: 30px;
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  .features-grid-modern {
-    grid-template-columns: 1fr;
-  }
+  /* Stats and features grids already handled above */
 
   .services-grid {
     grid-template-columns: 1fr;
@@ -1167,9 +1294,7 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
     margin: 0 auto;
   }
 
-  .testimonial-card {
-    min-width: 300px;
-  }
+  /* Testimonial card width handled above */
 
   .globe-container {
     height: 400px;
@@ -1186,12 +1311,8 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 }
 
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
   .stat-number {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .hero-slider-controls {
@@ -1204,7 +1325,6 @@ h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
   }
 
   .testimonial-card {
-    min-width: 280px;
     padding: 2rem;
   }
 

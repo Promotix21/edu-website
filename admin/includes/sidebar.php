@@ -7,9 +7,14 @@
 
         <div class="nav-section">Content Management</div>
 
+        <a href="<?php echo ADMIN_URL; ?>/pages/edit-hero-slider.php" class="nav-item">
+            <span class="nav-icon">🎬</span>
+            Hero Slider
+        </a>
+
         <a href="<?php echo ADMIN_URL; ?>/pages/edit-home.php" class="nav-item">
             <span class="nav-icon">🏠</span>
-            Homepage
+            Homepage Content
         </a>
 
         <a href="<?php echo ADMIN_URL; ?>/pages/edit-about.php" class="nav-item">
