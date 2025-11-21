@@ -322,6 +322,89 @@ h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
   transition: all 0.3s ease;
 }
 
+/* Mobile toggle active state (hamburger to X animation) */
+.mobile-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* OFF-CANVAS MOBILE MENU */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 100px 30px 40px;
+    gap: 0;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
+    transition: right 0.4s var(--transition-smooth);
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu li {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(37, 99, 235, 0.2);
+    color: var(--white);
+    transform: translateX(8px);
+  }
+
+  /* Mobile menu overlay */
+  .nav-menu.active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
 /* ============================================
    HERO BANNER WITH SLIDER
    ============================================ */
@@ -607,7 +690,7 @@ h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
 }
 
 /* Responsive stats grid */
-@media (max-width: 1199px) {
+@media (max-width: 1199px) and (min-width: 601px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
@@ -618,6 +701,14 @@ h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+  }
+}
+
+/* Ensure 4 columns on larger tablets and desktops */
+@media (min-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
   }
 }
 
@@ -750,7 +841,7 @@ h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
 }
 
 /* Responsive grid for tablets and mobile */
-@media (max-width: 1199px) {
+@media (max-width: 1199px) and (min-width: 769px) {
   .features-grid-modern {
     grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
     gap: 2.5rem;
@@ -761,6 +852,14 @@ h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
   .features-grid-modern {
     grid-template-columns: 1fr; /* 1 column on mobile */
     gap: 2rem;
+  }
+}
+
+/* Ensure 4 columns on larger screens */
+@media (min-width: 1200px) {
+  .features-grid-modern {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
   }
 }
 
@@ -977,9 +1076,10 @@ h4 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
   display: flex;
   gap: 2rem;
   padding: 1rem;
-  justify-content: center; /* Center the cards initially */
+  justify-content: center; /* Always keep cards centered */
   align-items: flex-start;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform; /* Optimize animation performance */
 }
 
 /* On desktop, show 3 cards - center them */

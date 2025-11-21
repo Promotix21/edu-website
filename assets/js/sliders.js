@@ -248,7 +248,7 @@
       }
 
       this.track.style.transform = `translateX(${translateX}px)`;
-      this.track.style.justifyContent = 'flex-start'; // Override centering when scrolling
+      // Keep cards centered - don't override CSS justify-content
     }
 
     next() {
