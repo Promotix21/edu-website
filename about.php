@@ -1,3 +1,47 @@
+<?php
+/**
+ * EDU Career India - About Us Page
+ * Dynamic content from database
+ */
+
+// Database configuration
+define('DB_HOST', 'db');
+define('DB_NAME', 'educareer_db');
+define('DB_USER', 'educareer_user');
+define('DB_PASS', 'educareer_pass_2025');
+
+// Connect to database
+try {
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+} catch (PDOException $e) {
+    // Fallback if database not available
+    $pdo = null;
+}
+
+// Helper function to get statistics
+function getStat($key, $default = 0) {
+    global $pdo;
+    if (!$pdo) return $default;
+
+    try {
+        $stmt = $pdo->prepare("SELECT stat_value FROM site_statistics WHERE stat_key = ?");
+        $stmt->execute([$key]);
+        $result = $stmt->fetch();
+        return $result ? $result['stat_value'] : $default;
+    } catch (Exception $e) {
+        return $default;
+    }
+}
+
+// Get statistics
+$statStudents = getStat('students_counseled', 5000);
+$statSuccess = getStat('success_rate', 95);
+$statInstitutions = getStat('partner_institutions', 200);
+$statExperience = getStat('years_experience', 15);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +55,8 @@
   <!-- ============================================
        SEO META TAGS - OPTIMIZED
        ============================================ -->
-  <title>About Us - EDU Career India | 15+ Years of Excellence in Education Counseling</title>
-  <meta name="description" content="Learn about EDU Career India's 15-year journey in education counseling. 5000+ students guided, 95% success rate. Meet our expert team committed to Your Dream, Our Mission.">
+  <title>About Us - EDU Career India | <?php echo $statExperience; ?>+ Years of Excellence in Education Counseling</title>
+  <meta name="description" content="Learn about EDU Career India's <?php echo $statExperience; ?>-year journey in education counseling. <?php echo number_format($statStudents); ?>+ students guided, <?php echo $statSuccess; ?>% success rate. Meet our expert team committed to Your Dream, Our Mission.">
   <meta name="keywords" content="about EDU Career India, education consultancy India, career counseling experts, college admission consultants, study abroad consultancy, education counseling services">
   <meta name="author" content="EDU Career India">
   <meta name="robots" content="index, follow">
@@ -28,14 +72,14 @@
   <meta property="og:locale" content="en_IN">
   <meta property="og:type" content="website">
   <meta property="og:title" content="About EDU Career India - Your Trusted Education Partner">
-  <meta property="og:description" content="15+ years of excellence in education counseling. 5000+ students guided with 95% success rate. Expert team committed to your educational success.">
+  <meta property="og:description" content="<?php echo $statExperience; ?>+ years of excellence in education counseling. <?php echo number_format($statStudents); ?>+ students guided with <?php echo $statSuccess; ?>% success rate. Expert team committed to your educational success.">
   <meta property="og:url" content="https://www.educareerindia.com/about">
   <meta property="og:site_name" content="EDU Career India">
   <meta property="og:image" content="https://www.educareerindia.com/assets/images/about-og-image.jpg">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About EDU Career India - 15+ Years of Excellence">
+  <meta name="twitter:title" content="About EDU Career India - <?php echo $statExperience; ?>+ Years of Excellence">
   <meta name="twitter:description" content="Learn about our journey, mission, and expert team dedicated to guiding students to their dream colleges.">
   <meta name="twitter:image" content="https://www.educareerindia.com/assets/images/about-og-image.jpg">
 
@@ -74,7 +118,7 @@
         "@id": "https://www.educareerindia.com/about#webpage",
         "url": "https://www.educareerindia.com/about",
         "name": "About Us - EDU Career India",
-        "description": "Learn about EDU Career India's 15-year journey in education counseling. 5000+ students guided with 95% success rate.",
+        "description": "Learn about EDU Career India's <?php echo $statExperience; ?>-year journey in education counseling. <?php echo number_format($statStudents); ?>+ students guided with <?php echo $statSuccess; ?>% success rate.",
         "isPartOf": {
           "@id": "https://www.educareerindia.com/#website"
         },
@@ -123,10 +167,10 @@
 
       <ul class="nav-menu" role="menubar">
         <li role="none"><a href="/" class="nav-link" role="menuitem">Home</a></li>
-        <li role="none"><a href="/about.html" class="nav-link active" role="menuitem" aria-current="page">About Us</a></li>
-        <li role="none"><a href="/courses.html" class="nav-link" role="menuitem">Courses</a></li>
-        <li role="none"><a href="/universities.html" class="nav-link" role="menuitem">Universities</a></li>
-        <li role="none"><a href="/contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li role="none"><a href="/about.php" class="nav-link active" role="menuitem" aria-current="page">About Us</a></li>
+        <li role="none"><a href="/courses.php" class="nav-link" role="menuitem">Courses</a></li>
+        <li role="none"><a href="/universities.php" class="nav-link" role="menuitem">Universities</a></li>
+        <li role="none"><a href="/contact.php" class="nav-link" role="menuitem">Contact</a></li>
       </ul>
 
       <div class="mobile-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
@@ -157,7 +201,7 @@
     <section class="section-sm" style="background-color: var(--light-color);" aria-labelledby="page-heading">
       <div class="container text-center">
         <h1 id="page-heading">Your Trusted Career Partner</h1>
-        <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">Building careers, shaping futures. For over 15 years, we've been the bridge between aspiring students and their dream colleges.</p>
+        <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">Building careers, shaping futures. For over <?php echo $statExperience; ?> years, we've been the bridge between aspiring students and their dream colleges.</p>
       </div>
     </section>
 
@@ -185,7 +229,7 @@
 
           <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">Our commitment goes beyond just securing admissions. We take pride in understanding each student's unique academic profile, personal aspirations, and career objectives. This personalized approach ensures that students don't just get into any college – they get into the <em>right</em> college that aligns with their dreams and maximizes their potential.</p>
 
-          <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">With partnerships across <strong>200+ premier institutions</strong> and a track record of <strong>5000+ successful admissions</strong> with a <strong>95% success rate</strong>, we have established ourselves as the go-to destination for students seeking quality education counseling and admission guidance.</p>
+          <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">With partnerships across <strong><?php echo number_format($statInstitutions); ?>+ premier institutions</strong> and a track record of <strong><?php echo number_format($statStudents); ?>+ successful admissions</strong> with a <strong><?php echo $statSuccess; ?>% success rate</strong>, we have established ourselves as the go-to destination for students seeking quality education counseling and admission guidance.</p>
         </div>
       </div>
     </section>
@@ -243,7 +287,7 @@
       <div class="container">
         <div class="section-header">
           <h2 id="journey-heading" class="section-title">Our Journey</h2>
-          <p class="section-subtitle">15+ years of dedication, innovation, and student success</p>
+          <p class="section-subtitle"><?php echo $statExperience; ?>+ years of dedication, innovation, and student success</p>
         </div>
 
         <div style="max-width: 900px; margin: 0 auto;">
@@ -270,7 +314,7 @@
 
             <div style="padding: 2rem; background-color: var(--light-color); border-radius: 1rem; border-left: 4px solid var(--secondary-color);">
               <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">2025 - Excellence Continues</h3>
-              <p>Today, with 5000+ successful admissions, 200+ partner institutions, and a 95% success rate, we continue to be the most trusted name in education counseling. Our journey of excellence continues!</p>
+              <p>Today, with <?php echo number_format($statStudents); ?>+ successful admissions, <?php echo number_format($statInstitutions); ?>+ partner institutions, and a <?php echo $statSuccess; ?>% success rate, we continue to be the most trusted name in education counseling. Our journey of excellence continues!</p>
             </div>
           </div>
         </div>
@@ -299,7 +343,7 @@
               <div style="flex-shrink: 0; width: 40px; height: 40px; background-color: var(--primary-color); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">2</div>
               <div>
                 <h3 style="margin-bottom: 0.5rem;">Extensive Network</h3>
-                <p>Our partnerships with 200+ institutions give you access to a wide range of options – from government colleges to private universities, from India to abroad.</p>
+                <p>Our partnerships with <?php echo number_format($statInstitutions); ?>+ institutions give you access to a wide range of options – from government colleges to private universities, from India to abroad.</p>
               </div>
             </div>
 
@@ -307,7 +351,7 @@
               <div style="flex-shrink: 0; width: 40px; height: 40px; background-color: var(--primary-color); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">3</div>
               <div>
                 <h3 style="margin-bottom: 0.5rem;">Proven Track Record</h3>
-                <p>Numbers speak louder than words. With 5000+ successful admissions and a 95% success rate, we have consistently delivered results that matter.</p>
+                <p>Numbers speak louder than words. With <?php echo number_format($statStudents); ?>+ successful admissions and a <?php echo $statSuccess; ?>% success rate, we have consistently delivered results that matter.</p>
               </div>
             </div>
 
@@ -336,7 +380,7 @@
       <div class="container text-center">
         <h2 id="cta-heading" style="color: var(--white); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Ready to Begin Your Journey?</h2>
         <p style="font-size: 1.25rem; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.9);">Join thousands of successful students who trusted us with their educational dreams</p>
-        <a href="/contact.html" class="btn btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Book Free Consultation</a>
+        <a href="/contact.php" class="btn btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Book Free Consultation</a>
       </div>
     </section>
 
@@ -359,33 +403,33 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About Us</a></li>
-            <li><a href="/courses.html">Courses</a></li>
-            <li><a href="/universities.html">Universities</a></li>
-            <li><a href="/contact.html">Contact Us</a></li>
+            <li><a href="/about.php">About Us</a></li>
+            <li><a href="/courses.php">Courses</a></li>
+            <li><a href="/universities.php">Universities</a></li>
+            <li><a href="/contact.php">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="footer-column">
           <h4>Our Courses</h4>
           <ul>
-            <li><a href="/courses.html#mbbs">MBBS Admission</a></li>
-            <li><a href="/courses.html#btech">B.Tech Engineering</a></li>
-            <li><a href="/courses.html#bpharma">B.Pharma Programs</a></li>
-            <li><a href="/courses.html#agriculture">B.Sc Agriculture</a></li>
-            <li><a href="/courses.html#mba">MBA & PGDM</a></li>
+            <li><a href="/courses.php#mbbs">MBBS Admission</a></li>
+            <li><a href="/courses.php#btech">B.Tech Engineering</a></li>
+            <li><a href="/courses.php#bpharma">B.Pharma Programs</a></li>
+            <li><a href="/courses.php#agriculture">B.Sc Agriculture</a></li>
+            <li><a href="/courses.php#mba">MBA & PGDM</a></li>
           </ul>
         </div>
 
         <div class="footer-column">
           <h4>Study Destinations</h4>
           <ul>
-            <li><a href="/universities.html#india">India</a></li>
-            <li><a href="/universities.html#usa">United States</a></li>
-            <li><a href="/universities.html#uk">United Kingdom</a></li>
-            <li><a href="/universities.html#australia">Australia</a></li>
-            <li><a href="/universities.html#canada">Canada</a></li>
-            <li><a href="/universities.html#dubai">Dubai</a></li>
+            <li><a href="/universities.php#india">India</a></li>
+            <li><a href="/universities.php#usa">United States</a></li>
+            <li><a href="/universities.php#uk">United Kingdom</a></li>
+            <li><a href="/universities.php#australia">Australia</a></li>
+            <li><a href="/universities.php#canada">Canada</a></li>
+            <li><a href="/universities.php#dubai">Dubai</a></li>
           </ul>
         </div>
       </div>

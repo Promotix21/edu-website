@@ -1,3 +1,27 @@
+<?php
+/**
+ * EDU Career India - Contact Page
+ */
+
+// Check for success/error messages
+$successMessage = '';
+$errorMessage = '';
+
+if (isset($_GET['success']) && $_GET['success'] == '1') {
+    $successMessage = 'Thank you for contacting us! We will get back to you within 24 hours.';
+}
+
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+    if ($error === 'database') {
+        $errorMessage = 'Sorry, there was a database error. Please try again later.';
+    } elseif ($error === 'submission_failed') {
+        $errorMessage = 'Failed to submit your inquiry. Please try again.';
+    } else {
+        $errorMessage = htmlspecialchars($error);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -244,10 +268,10 @@
 
       <ul class="nav-menu" role="menubar">
         <li role="none"><a href="/" class="nav-link" role="menuitem">Home</a></li>
-        <li role="none"><a href="/about.html" class="nav-link" role="menuitem">About Us</a></li>
-        <li role="none"><a href="/courses.html" class="nav-link" role="menuitem">Courses</a></li>
-        <li role="none"><a href="/universities.html" class="nav-link" role="menuitem">Universities</a></li>
-        <li role="none"><a href="/contact.html" class="nav-link active" role="menuitem" aria-current="page">Contact</a></li>
+        <li role="none"><a href="/about.php" class="nav-link" role="menuitem">About Us</a></li>
+        <li role="none"><a href="/courses.php" class="nav-link" role="menuitem">Courses</a></li>
+        <li role="none"><a href="/universities.php" class="nav-link" role="menuitem">Universities</a></li>
+        <li role="none"><a href="/contact.php" class="nav-link active" role="menuitem" aria-current="page">Contact</a></li>
       </ul>
 
       <div class="mobile-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
@@ -262,6 +286,19 @@
        MAIN CONTENT
        ============================================ -->
   <main id="main-content" role="main">
+
+    <!-- SUCCESS/ERROR MESSAGES -->
+    <?php if ($successMessage): ?>
+    <div style="background-color: #d1fae5; border-left: 4px solid #10b981; color: #065f46; padding: 1rem 1.5rem; margin: 1rem 0;">
+      <strong>✓ Success!</strong> <?php echo htmlspecialchars($successMessage); ?>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($errorMessage): ?>
+    <div style="background-color: #fee2e2; border-left: 4px solid #dc2626; color: #991b1b; padding: 1rem 1.5rem; margin: 1rem 0;">
+      <strong>✗ Error!</strong> <?php echo htmlspecialchars($errorMessage); ?>
+    </div>
+    <?php endif; ?>
 
     <!-- BREADCRUMB NAVIGATION -->
     <nav aria-label="Breadcrumb" style="padding-top: 100px; padding-bottom: 1rem; background-color: var(--light-color);">
@@ -506,39 +543,39 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About Us</a></li>
-            <li><a href="/courses.html">Courses</a></li>
-            <li><a href="/universities.html">Universities</a></li>
-            <li><a href="/contact.html">Contact Us</a></li>
+            <li><a href="/about.php">About Us</a></li>
+            <li><a href="/courses.php">Courses</a></li>
+            <li><a href="/universities.php">Universities</a></li>
+            <li><a href="/contact.php">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="footer-column">
           <h4>Our Courses</h4>
           <ul>
-            <li><a href="/courses.html#mbbs">MBBS Admission</a></li>
-            <li><a href="/courses.html#btech">B.Tech Engineering</a></li>
-            <li><a href="/courses.html#bpharma">B.Pharma Programs</a></li>
-            <li><a href="/courses.html#agriculture">B.Sc Agriculture</a></li>
-            <li><a href="/courses.html#mba">MBA & PGDM</a></li>
+            <li><a href="/courses.php#mbbs">MBBS Admission</a></li>
+            <li><a href="/courses.php#btech">B.Tech Engineering</a></li>
+            <li><a href="/courses.php#bpharma">B.Pharma Programs</a></li>
+            <li><a href="/courses.php#agriculture">B.Sc Agriculture</a></li>
+            <li><a href="/courses.php#mba">MBA & PGDM</a></li>
           </ul>
         </div>
 
         <div class="footer-column">
           <h4>Study Destinations</h4>
           <ul>
-            <li><a href="/universities.html#india">India</a></li>
-            <li><a href="/universities.html#usa">United States</a></li>
-            <li><a href="/universities.html#uk">United Kingdom</a></li>
-            <li><a href="/universities.html#australia">Australia</a></li>
-            <li><a href="/universities.html#canada">Canada</a></li>
-            <li><a href="/universities.html#dubai">Dubai</a></li>
+            <li><a href="/universities.php#india">India</a></li>
+            <li><a href="/universities.php#usa">United States</a></li>
+            <li><a href="/universities.php#uk">United Kingdom</a></li>
+            <li><a href="/universities.php#australia">Australia</a></li>
+            <li><a href="/universities.php#canada">Canada</a></li>
+            <li><a href="/universities.php#dubai">Dubai</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 EDU Career India. All rights reserved. | <a href="/privacy-policy.html" style="color: rgba(255, 255, 255, 0.7);">Privacy Policy</a> | <a href="/terms-conditions.html" style="color: rgba(255, 255, 255, 0.7);">Terms & Conditions</a></p>
+        <p>&copy; 2025 EDU Career India. All rights reserved. | <a href="/privacy-policy.php" style="color: rgba(255, 255, 255, 0.7);">Privacy Policy</a> | <a href="/terms-conditions.php" style="color: rgba(255, 255, 255, 0.7);">Terms & Conditions</a></p>
       </div>
     </div>
   </footer>

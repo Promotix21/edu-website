@@ -73,10 +73,10 @@
       <a href="/" class="logo">EDU <span>Career</span> India</a>
       <ul class="nav-menu" role="menubar">
         <li><a href="/" class="nav-link">Home</a></li>
-        <li><a href="/about.html" class="nav-link">About Us</a></li>
-        <li><a href="/courses.html" class="nav-link">Courses</a></li>
-        <li><a href="/universities.html" class="nav-link active" aria-current="page">Universities</a></li>
-        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        <li><a href="/about.php" class="nav-link">About Us</a></li>
+        <li><a href="/courses.php" class="nav-link">Courses</a></li>
+        <li><a href="/universities.php" class="nav-link active" aria-current="page">Universities</a></li>
+        <li><a href="/contact.php" class="nav-link">Contact</a></li>
       </ul>
       <div class="mobile-toggle" role="button" tabindex="0">
         <span></span><span></span><span></span>
@@ -126,7 +126,7 @@
               <li style="padding: 0.5rem 0;">✓ 30+ MBA/PGDM Institutes</li>
               <li style="padding: 0.5rem 0;">✓ Top institutions like Symbiosis, MIT-WPU</li>
             </ul>
-            <a href="/contact.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
+            <a href="/contact.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
           </article>
 
           <article class="state-card">
@@ -138,7 +138,7 @@
               <li style="padding: 0.5rem 0;">✓ 15+ Business Schools</li>
               <li style="padding: 0.5rem 0;">✓ RVCE, MSRIT, Manipal, Jain University</li>
             </ul>
-            <a href="/contact.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
+            <a href="/contact.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
           </article>
 
           <article class="state-card">
@@ -150,7 +150,7 @@
               <li style="padding: 0.5rem 0;">✓ Multiple Campus Options</li>
               <li style="padding: 0.5rem 0;">✓ Excellent Placement Records</li>
             </ul>
-            <a href="/contact.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
+            <a href="/contact.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
           </article>
 
           <article class="state-card">
@@ -162,7 +162,7 @@
               <li style="padding: 0.5rem 0;">✓ Heritage, Techno India, IEM</li>
               <li style="padding: 0.5rem 0;">✓ Affordable Fee Structure</li>
             </ul>
-            <a href="/contact.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
+            <a href="/contact.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
           </article>
 
           <article class="state-card">
@@ -174,7 +174,7 @@
               <li style="padding: 0.5rem 0;">✓ Silicon Institute of Technology</li>
               <li style="padding: 0.5rem 0;">✓ Gandhi Group of Institutions</li>
             </ul>
-            <a href="/contact.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
+            <a href="/contact.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
           </article>
 
           <article class="state-card">
@@ -186,7 +186,7 @@
               <li style="padding: 0.5rem 0;">✓ IMI, BIMTECH for MBA</li>
               <li style="padding: 0.5rem 0;">✓ Multiple Campus Options</li>
             </ul>
-            <a href="/contact.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
+            <a href="/contact.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Admission</a>
           </article>
         </div>
       </div>
@@ -239,7 +239,7 @@
       <div class="container text-center">
         <h2 style="color: var(--white); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Find Your Perfect College</h2>
         <p style="font-size: 1.25rem; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.9);">Contact us for personalized college recommendations based on your profile and preferences</p>
-        <a href="/contact.html" class="btn btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Get College Recommendations</a>
+        <a href="/contact.php" class="btn btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Get College Recommendations</a>
       </div>
     </section>
 
@@ -259,31 +259,31 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About Us</a></li>
-            <li><a href="/courses.html">Courses</a></li>
-            <li><a href="/universities.html">Universities</a></li>
-            <li><a href="/contact.html">Contact Us</a></li>
+            <li><a href="/about.php">About Us</a></li>
+            <li><a href="/courses.php">Courses</a></li>
+            <li><a href="/universities.php">Universities</a></li>
+            <li><a href="/contact.php">Contact Us</a></li>
           </ul>
         </div>
         <div class="footer-column">
           <h4>Our Courses</h4>
           <ul>
-            <li><a href="/courses.html#mbbs">MBBS Admission</a></li>
-            <li><a href="/courses.html#btech">B.Tech Engineering</a></li>
-            <li><a href="/courses.html#bpharma">B.Pharma Programs</a></li>
-            <li><a href="/courses.html#agriculture">B.Sc Agriculture</a></li>
-            <li><a href="/courses.html#mba">MBA & PGDM</a></li>
+            <li><a href="/courses.php#mbbs">MBBS Admission</a></li>
+            <li><a href="/courses.php#btech">B.Tech Engineering</a></li>
+            <li><a href="/courses.php#bpharma">B.Pharma Programs</a></li>
+            <li><a href="/courses.php#agriculture">B.Sc Agriculture</a></li>
+            <li><a href="/courses.php#mba">MBA & PGDM</a></li>
           </ul>
         </div>
         <div class="footer-column">
           <h4>Study Destinations</h4>
           <ul>
-            <li><a href="/universities.html#india">India</a></li>
-            <li><a href="/universities.html#usa">United States</a></li>
-            <li><a href="/universities.html#uk">United Kingdom</a></li>
-            <li><a href="/universities.html#australia">Australia</a></li>
-            <li><a href="/universities.html#canada">Canada</a></li>
-            <li><a href="/universities.html#dubai">Dubai</a></li>
+            <li><a href="/universities.php#india">India</a></li>
+            <li><a href="/universities.php#usa">United States</a></li>
+            <li><a href="/universities.php#uk">United Kingdom</a></li>
+            <li><a href="/universities.php#australia">Australia</a></li>
+            <li><a href="/universities.php#canada">Canada</a></li>
+            <li><a href="/universities.php#dubai">Dubai</a></li>
           </ul>
         </div>
       </div>
