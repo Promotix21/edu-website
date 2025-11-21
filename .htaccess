@@ -34,18 +34,6 @@ RewriteRule ^(.*)\.html$ /$1.php [R=301,L]
 # Disable directory browsing
 Options -Indexes
 
-# Protect config files
-<FilesMatch "^(config\.php|\.env)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Protect sensitive directories
-<DirectoryMatch "^.*/admin/includes">
-    Order Allow,Deny
-    Deny from all
-</DirectoryMatch>
-
 # PHP settings
 <IfModule mod_php7.c>
     php_value upload_max_filesize 10M
