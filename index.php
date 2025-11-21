@@ -1,30 +1,21 @@
 <?php
 /**
  * EDU Career India - Homepage
- * Dynamic content from database
+ * Modern animated design with GSAP, Three.js, and Lenis smooth scroll
  */
 
 // Include main configuration
 require_once __DIR__ . '/config.php';
 
-// Get dynamic content (with fallbacks to original content)
+// Get dynamic content (with fallbacks)
 $heroTitle = getContent('home', 'hero', 'title', 'Your Gateway to Top Universities in India & Abroad');
-$heroSubtitle = getContent('home', 'hero', 'subtitle', 'Expert career counseling and direct admission guidance for MBBS, B.Tech, B.Pharma, Agriculture, and MBA programs. Your dream college is just a consultation away.');
-$heroImage = getContent('home', 'hero', 'image', '');
+$heroSubtitle = getContent('home', 'hero', 'subtitle', 'Expert career counseling and direct admission guidance for MBBS, B.Tech, B.Pharma, Agriculture, and MBA programs.');
 
 // Get statistics
 $statStudents = getStat('students_counseled', 5000);
 $statSuccess = getStat('success_rate', 95);
 $statInstitutions = getStat('partner_institutions', 200);
 $statExperience = getStat('years_experience', 15);
-
-// Get service images
-$mbbsImage = getContent('home', 'services', 'mbbs_image', '');
-$btechImage = getContent('home', 'services', 'btech_image', '');
-$bpharmaImage = getContent('home', 'services', 'bpharma_image', '');
-$agricultureImage = getContent('home', 'services', 'agriculture_image', '');
-$mbaImage = getContent('home', 'services', 'mba_image', '');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,10 +59,24 @@ $mbaImage = getContent('home', 'services', 'mba_image', '');
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- STYLESHEETS -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/modern.css">
+
+  <!-- ANIMATION LIBRARIES -->
+  <!-- GSAP 3.12+ with ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- SplitType.js for text animations -->
+  <script src="https://unpkg.com/split-type@0.3.4/umd/index.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Three.js for 3D Globe -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js"></script>
 
   <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
@@ -95,30 +100,25 @@ $mbaImage = getContent('home', 'services', 'mba_image', '');
     ]
   }
   </script>
-
-  <?php if ($heroImage): ?>
-  <style>
-    .hero {
-      background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(30, 64, 175, 0.8)), url('<?php echo htmlspecialchars($heroImage); ?>');
-      background-size: cover;
-      background-position: center;
-    }
-  </style>
-  <?php endif; ?>
 </head>
 <body>
+
   <!-- HEADER -->
   <header class="header" role="banner">
     <nav class="navbar container" role="navigation">
-      <a href="/" class="logo">EDU <span>Career</span> India</a>
+      <a href="/" class="logo">
+        <span class="logo-edu">EDU</span>
+        <span class="logo-career">Career</span>
+        <span class="logo-india">India</span>
+      </a>
       <ul class="nav-menu" role="menubar">
         <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-        <li><a href="/about.php" class="nav-link">About Us</a></li>
-        <li><a href="/courses.php" class="nav-link">Courses</a></li>
-        <li><a href="/universities.php" class="nav-link">Universities</a></li>
-        <li><a href="/contact.php" class="nav-link">Contact</a></li>
+        <li><a href="/about" class="nav-link">About Us</a></li>
+        <li><a href="/courses" class="nav-link">Courses</a></li>
+        <li><a href="/universities" class="nav-link">Universities</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
       </ul>
-      <div class="mobile-toggle" role="button" tabindex="0">
+      <div class="mobile-toggle" role="button" tabindex="0" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </div>
     </nav>
@@ -127,190 +127,436 @@ $mbaImage = getContent('home', 'services', 'mba_image', '');
   <!-- MAIN CONTENT -->
   <main id="main-content" role="main">
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1><?php echo htmlspecialchars($heroTitle); ?></h1>
-          <p><?php echo htmlspecialchars($heroSubtitle); ?></p>
-          <div class="hero-cta">
-            <a href="/contact.php" class="btn btn-primary">Book Free Consultation</a>
-            <a href="/courses.php" class="btn btn-outline">Explore Courses</a>
+    <!-- MODERN HERO SECTION WITH SLIDER -->
+    <section class="hero-modern">
+      <div class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" style="background-image: url('/assets/images/hero-banner-home.jpg');">
+          <div class="hero-overlay"></div>
+          <div class="container">
+            <div class="hero-content">
+              <h1 class="hero-title animate-text"><?php echo htmlspecialchars($heroTitle); ?></h1>
+              <p class="hero-subtitle animate-text"><?php echo htmlspecialchars($heroSubtitle); ?></p>
+              <div class="hero-cta">
+                <a href="/contact" class="btn btn-primary btn-glow">Book Free Consultation</a>
+                <a href="/courses" class="btn btn-outline-white">Explore Courses</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 - MBBS -->
+        <div class="hero-slide" style="background-image: url('/assets/images/hero-banner-mbbs.jpg');">
+          <div class="hero-overlay"></div>
+          <div class="container">
+            <div class="hero-content">
+              <h1 class="hero-title animate-text">Direct MBBS Admission</h1>
+              <p class="hero-subtitle animate-text">Secure your medical career with top colleges across India</p>
+              <div class="hero-cta">
+                <a href="/courses#mbbs" class="btn btn-primary btn-glow">Explore MBBS Programs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 - B.Tech -->
+        <div class="hero-slide" style="background-image: url('/assets/images/hero-banner-engineering.jpg');">
+          <div class="hero-overlay"></div>
+          <div class="container">
+            <div class="hero-content">
+              <h1 class="hero-title animate-text">Engineering Your Future</h1>
+              <p class="hero-subtitle animate-text">B.Tech admissions in top engineering colleges</p>
+              <div class="hero-cta">
+                <a href="/courses#btech" class="btn btn-primary btn-glow">Explore B.Tech Programs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 - Study Abroad -->
+        <div class="hero-slide" style="background-image: url('/assets/images/hero-banner-study-abroad.jpg');">
+          <div class="hero-overlay"></div>
+          <div class="container">
+            <div class="hero-content">
+              <h1 class="hero-title animate-text">Study Abroad Dreams</h1>
+              <p class="hero-subtitle animate-text">USA, UK, Canada, Australia - Your global education partner</p>
+              <div class="hero-cta">
+                <a href="/universities" class="btn btn-primary btn-glow">Explore Destinations</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Slider Controls -->
+      <div class="hero-slider-controls">
+        <button class="slider-btn prev" aria-label="Previous slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="slider-dots"></div>
+        <button class="slider-btn next" aria-label="Next slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <div class="scroll-line"></div>
+      </div>
     </section>
 
-    <!-- STATISTICS SECTION -->
-    <section class="stats">
+    <!-- ANIMATED STATISTICS SECTION -->
+    <section class="stats-section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Our Track Record Speaks</h2>
-          <p class="section-subtitle">Numbers that reflect our commitment to student success and excellence</p>
-        </div>
-
         <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number"><?php echo number_format($statStudents); ?>+</div>
+          <div class="stat-card" data-stat-target="<?php echo $statStudents; ?>">
+            <div class="stat-icon">
+              <img src="/assets/images/stat-icon-students.png" alt="Students" loading="lazy">
+            </div>
+            <div class="stat-number" data-target="<?php echo $statStudents; ?>">0</div>
+            <div class="stat-suffix">+</div>
             <div class="stat-label">Students Counseled</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-number"><?php echo $statSuccess; ?>%</div>
+
+          <div class="stat-card" data-stat-target="<?php echo $statSuccess; ?>">
+            <div class="stat-icon">
+              <img src="/assets/images/stat-icon-success.png" alt="Success Rate" loading="lazy">
+            </div>
+            <div class="stat-number" data-target="<?php echo $statSuccess; ?>">0</div>
+            <div class="stat-suffix">%</div>
             <div class="stat-label">Success Rate</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-number"><?php echo $statInstitutions; ?>+</div>
+
+          <div class="stat-card" data-stat-target="<?php echo $statInstitutions; ?>">
+            <div class="stat-icon">
+              <img src="/assets/images/stat-icon-institutions.png" alt="Partner Institutions" loading="lazy">
+            </div>
+            <div class="stat-number" data-target="<?php echo $statInstitutions; ?>">0</div>
+            <div class="stat-suffix">+</div>
             <div class="stat-label">Partner Institutions</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-number"><?php echo $statExperience; ?>+</div>
+
+          <div class="stat-card" data-stat-target="<?php echo $statExperience; ?>">
+            <div class="stat-icon">
+              <img src="/assets/images/stat-icon-experience.png" alt="Years Experience" loading="lazy">
+            </div>
+            <div class="stat-number" data-target="<?php echo $statExperience; ?>">0</div>
+            <div class="stat-suffix">+</div>
             <div class="stat-label">Years of Excellence</div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- THREE.JS GLOBE SECTION -->
+    <section class="globe-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 class="section-title animate-text">Global Education Network</h2>
+          <p class="section-subtitle animate-text">Partner institutions across 6 countries offering world-class education</p>
+        </div>
+        <div id="globe-container" class="globe-container"></div>
+        <div class="globe-locations">
+          <div class="location-tag" data-country="india">
+            <span class="location-flag">🇮🇳</span> India
+          </div>
+          <div class="location-tag" data-country="usa">
+            <span class="location-flag">🇺🇸</span> USA
+          </div>
+          <div class="location-tag" data-country="uk">
+            <span class="location-flag">🇬🇧</span> UK
+          </div>
+          <div class="location-tag" data-country="australia">
+            <span class="location-flag">🇦🇺</span> Australia
+          </div>
+          <div class="location-tag" data-country="canada">
+            <span class="location-flag">🇨🇦</span> Canada
+          </div>
+          <div class="location-tag" data-country="dubai">
+            <span class="location-flag">🇦🇪</span> UAE
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY CHOOSE US SECTION -->
-    <section class="section">
+    <section class="features-section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Why Choose EDU Career India?</h2>
-          <p class="section-subtitle">Discover what makes us the most trusted education consultancy for thousands of students</p>
+        <div class="section-header text-center">
+          <h2 class="section-title animate-text">Why Choose EDU Career India?</h2>
+          <p class="section-subtitle animate-text">Discover what makes us the most trusted education consultancy</p>
         </div>
 
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon">🎓</div>
-            <h3>Expert Guidance</h3>
-            <p>Our experienced counselors provide personalized guidance tailored to your academic profile and career aspirations.</p>
+        <div class="features-grid-modern">
+          <article class="feature-card-modern">
+            <div class="feature-icon-modern">
+              <img src="/assets/images/icon-expert-counselors.png" alt="Expert Counselors" loading="lazy">
+            </div>
+            <h3 class="animate-text">Expert Guidance</h3>
+            <p>Personalized counseling tailored to your academic profile and career aspirations.</p>
           </article>
-          <article class="feature-card">
-            <div class="feature-icon">🏆</div>
-            <h3>Proven Track Record</h3>
-            <p>With <?php echo number_format($statStudents); ?>+ successful admissions and a <?php echo $statSuccess; ?>% success rate, we consistently deliver results.</p>
+
+          <article class="feature-card-modern">
+            <div class="feature-icon-modern">
+              <img src="/assets/images/icon-proven-track-record.png" alt="Proven Track Record" loading="lazy">
+            </div>
+            <h3 class="animate-text">Proven Track Record</h3>
+            <p><?php echo number_format($statStudents); ?>+ successful admissions with <?php echo $statSuccess; ?>% success rate.</p>
           </article>
-          <article class="feature-card">
-            <div class="feature-icon">🌍</div>
-            <h3>Global Reach</h3>
-            <p>Access to premium institutions across India, USA, UK, Australia, Canada, and Dubai.</p>
+
+          <article class="feature-card-modern">
+            <div class="feature-icon-modern">
+              <img src="/assets/images/icon-global-reach.png" alt="Global Reach" loading="lazy">
+            </div>
+            <h3 class="animate-text">Global Reach</h3>
+            <p>Access to premium institutions across 6 countries worldwide.</p>
           </article>
-          <article class="feature-card">
-            <div class="feature-icon">💼</div>
-            <h3>End-to-End Support</h3>
-            <p>From college selection to admission completion, we handle everything under one roof.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon">✅</div>
-            <h3>Transparent Process</h3>
-            <p>No hidden charges, no false promises. Just honest communication and transparent dealings.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Quick Admissions</h3>
-            <p>Streamlined process ensures faster admissions to your dream colleges.</p>
+
+          <article class="feature-card-modern">
+            <div class="feature-icon-modern">
+              <img src="/assets/images/icon-end-to-end-support.png" alt="End-to-End Support" loading="lazy">
+            </div>
+            <h3 class="animate-text">End-to-End Support</h3>
+            <p>Complete assistance from college selection to admission completion.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES SECTION -->
-    <section class="section" style="background-color: var(--light-color);">
+    <!-- SERVICES/COURSES SECTION -->
+    <section class="services-section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Programs We Offer</h2>
-          <p class="section-subtitle">Specialized counseling and direct admission services</p>
+        <div class="section-header text-center">
+          <h2 class="section-title animate-text">Programs We Offer</h2>
+          <p class="section-subtitle animate-text">Specialized counseling and direct admission services</p>
         </div>
 
-        <div class="features-grid">
-          <article class="feature-card">
-            <?php if ($mbbsImage): ?>
-              <img src="<?php echo htmlspecialchars($mbbsImage); ?>" alt="MBBS Program" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem;">
-            <?php endif; ?>
-            <div class="feature-icon">🩺</div>
-            <h3>MBBS Programs</h3>
-            <p>Direct admission to top medical colleges across India. Expert guidance for NEET counseling and management quota.</p>
-            <a href="/courses.php#mbbs" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Learn More</a>
+        <div class="services-grid">
+          <!-- MBBS -->
+          <article class="service-card">
+            <div class="service-image">
+              <img src="/assets/images/service-mbbs.jpg" alt="MBBS Programs" loading="lazy">
+              <div class="service-overlay">
+                <a href="/courses#mbbs" class="service-link">Explore MBBS</a>
+              </div>
+            </div>
+            <div class="service-content">
+              <div class="service-icon">
+                <img src="/assets/images/service-icon-mbbs.png" alt="MBBS Icon" loading="lazy">
+              </div>
+              <h3 class="animate-text">MBBS Programs</h3>
+              <p>Direct admission to top medical colleges across India and abroad.</p>
+              <ul class="service-features">
+                <li>NEET Counseling Support</li>
+                <li>Management Quota Guidance</li>
+                <li>Top Medical Colleges</li>
+              </ul>
+            </div>
           </article>
 
-          <article class="feature-card">
-            <?php if ($btechImage): ?>
-              <img src="<?php echo htmlspecialchars($btechImage); ?>" alt="B.Tech Engineering" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem;">
-            <?php endif; ?>
-            <div class="feature-icon">⚙️</div>
-            <h3>B.Tech Engineering</h3>
-            <p>Secure your seat in prestigious engineering colleges. All branches available across top institutions.</p>
-            <a href="/courses.php#btech" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Learn More</a>
+          <!-- B.Tech -->
+          <article class="service-card">
+            <div class="service-image">
+              <img src="/assets/images/service-btech.jpg" alt="B.Tech Engineering" loading="lazy">
+              <div class="service-overlay">
+                <a href="/courses#btech" class="service-link">Explore B.Tech</a>
+              </div>
+            </div>
+            <div class="service-content">
+              <div class="service-icon">
+                <img src="/assets/images/service-icon-engineering.png" alt="Engineering Icon" loading="lazy">
+              </div>
+              <h3 class="animate-text">B.Tech Engineering</h3>
+              <p>Secure seats in prestigious engineering colleges across all branches.</p>
+              <ul class="service-features">
+                <li>All Engineering Branches</li>
+                <li>Top AICTE Colleges</li>
+                <li>Placement Assistance</li>
+              </ul>
+            </div>
           </article>
 
-          <article class="feature-card">
-            <?php if ($bpharmaImage): ?>
-              <img src="<?php echo htmlspecialchars($bpharmaImage); ?>" alt="B.Pharma Programs" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem;">
-            <?php endif; ?>
-            <div class="feature-icon">💊</div>
-            <h3>B.Pharma Programs</h3>
-            <p>Admission to AICTE approved pharmacy colleges with excellent placement records.</p>
-            <a href="/courses.php#bpharma" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Learn More</a>
+          <!-- B.Pharma -->
+          <article class="service-card">
+            <div class="service-image">
+              <img src="/assets/images/service-bpharma.jpg" alt="B.Pharma Programs" loading="lazy">
+              <div class="service-overlay">
+                <a href="/courses#bpharma" class="service-link">Explore B.Pharma</a>
+              </div>
+            </div>
+            <div class="service-content">
+              <div class="service-icon">
+                <img src="/assets/images/service-icon-pharmacy.png" alt="Pharmacy Icon" loading="lazy">
+              </div>
+              <h3 class="animate-text">B.Pharma Programs</h3>
+              <p>AICTE approved pharmacy colleges with excellent placement records.</p>
+              <ul class="service-features">
+                <li>AICTE Approved Colleges</li>
+                <li>Industry Partnerships</li>
+                <li>Research Opportunities</li>
+              </ul>
+            </div>
           </article>
 
-          <article class="feature-card">
-            <?php if ($agricultureImage): ?>
-              <img src="<?php echo htmlspecialchars($agricultureImage); ?>" alt="B.Sc Agriculture" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem;">
-            <?php endif; ?>
-            <div class="feature-icon">🌾</div>
-            <h3>B.Sc Agriculture</h3>
-            <p>Gateway to agricultural sciences education at top universities.</p>
-            <a href="/courses.php#agriculture" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Learn More</a>
+          <!-- Agriculture -->
+          <article class="service-card">
+            <div class="service-image">
+              <img src="/assets/images/service-agriculture.jpg" alt="B.Sc Agriculture" loading="lazy">
+              <div class="service-overlay">
+                <a href="/courses#agriculture" class="service-link">Explore Agriculture</a>
+              </div>
+            </div>
+            <div class="service-content">
+              <div class="service-icon">
+                <img src="/assets/images/service-icon-agriculture.png" alt="Agriculture Icon" loading="lazy">
+              </div>
+              <h3 class="animate-text">B.Sc Agriculture</h3>
+              <p>Gateway to agricultural sciences at top universities.</p>
+              <ul class="service-features">
+                <li>Agricultural Universities</li>
+                <li>Modern Farming Tech</li>
+                <li>Government Support</li>
+              </ul>
+            </div>
           </article>
 
-          <article class="feature-card">
-            <?php if ($mbaImage): ?>
-              <img src="<?php echo htmlspecialchars($mbaImage); ?>" alt="MBA & PGDM" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem;">
-            <?php endif; ?>
-            <div class="feature-icon">📊</div>
-            <h3>MBA & PGDM</h3>
-            <p>Admission to India's leading B-schools with excellent ROI and placements.</p>
-            <a href="/courses.php#mba" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Learn More</a>
+          <!-- MBA -->
+          <article class="service-card">
+            <div class="service-image">
+              <img src="/assets/images/service-mba.jpg" alt="MBA & PGDM" loading="lazy">
+              <div class="service-overlay">
+                <a href="/courses#mba" class="service-link">Explore MBA</a>
+              </div>
+            </div>
+            <div class="service-content">
+              <div class="service-icon">
+                <img src="/assets/images/service-icon-mba.png" alt="MBA Icon" loading="lazy">
+              </div>
+              <h3 class="animate-text">MBA & PGDM</h3>
+              <p>Admission to India's leading B-schools with excellent ROI.</p>
+              <ul class="service-features">
+                <li>Top B-Schools</li>
+                <li>All Specializations</li>
+                <li>Placement Support</li>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS PREVIEW -->
-    <section class="section">
+    <!-- TESTIMONIALS CAROUSEL -->
+    <section class="testimonials-section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Success Stories</h2>
-          <p class="section-subtitle">Hear from students who achieved their dreams with our guidance</p>
+        <div class="section-header text-center">
+          <h2 class="section-title animate-text">Success Stories</h2>
+          <p class="section-subtitle animate-text">Hear from students who achieved their dreams with our guidance</p>
         </div>
 
-        <div class="features-grid">
-          <article class="feature-card">
-            <p style="font-style: italic; margin-bottom: 1rem;">"EDU Career India helped me secure a direct seat in RVCE, Bangalore. Their guidance was precise and highly professional. Highly recommended!"</p>
-            <h4 style="color: var(--primary-color);">Priya Sharma</h4>
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">B.Tech CSE, RVCE Bangalore</p>
-          </article>
+        <div class="testimonials-carousel">
+          <div class="testimonial-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <div class="testimonial-image">
+                <img src="/assets/images/testimonial-priya.jpg" alt="Priya Sharma" loading="lazy">
+              </div>
+              <div class="testimonial-content">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"EDU Career India helped me secure a direct seat in RVCE, Bangalore. Their guidance was precise and highly professional. Highly recommended!"</p>
+                <h4 class="testimonial-name">Priya Sharma</h4>
+                <p class="testimonial-course">B.Tech CSE, RVCE Bangalore</p>
+              </div>
+            </div>
 
-          <article class="feature-card">
-            <p style="font-style: italic; margin-bottom: 1rem;">"Getting into a top MBBS program seemed impossible, but the team made the entire process seamless. Thank you for making my dream a reality!"</p>
-            <h4 style="color: var(--primary-color);">Rahul Verma</h4>
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">MBBS, JSS Medical College, Mysore</p>
-          </article>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <div class="testimonial-image">
+                <img src="/assets/images/testimonial-rahul.jpg" alt="Rahul Verma" loading="lazy">
+              </div>
+              <div class="testimonial-content">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Getting into a top MBBS program seemed impossible, but the team made the entire process seamless. Thank you for making my dream a reality!"</p>
+                <h4 class="testimonial-name">Rahul Verma</h4>
+                <p class="testimonial-course">MBBS, JSS Medical College, Mysore</p>
+              </div>
+            </div>
 
-          <article class="feature-card">
-            <p style="font-style: italic; margin-bottom: 1rem;">"I was confused about which MBA college to choose. EDU Career India guided me in selecting the right specialization. Excellent service!"</p>
-            <h4 style="color: var(--primary-color);">Anjali Patel</h4>
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">MBA Marketing, SIBM Pune</p>
-          </article>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <div class="testimonial-image">
+                <img src="/assets/images/testimonial-anjali.jpg" alt="Anjali Patel" loading="lazy">
+              </div>
+              <div class="testimonial-content">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"I was confused about which MBA college to choose. EDU Career India guided me in selecting the right specialization. Excellent service!"</p>
+                <h4 class="testimonial-name">Anjali Patel</h4>
+                <p class="testimonial-course">MBA Marketing, SIBM Pune</p>
+              </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card">
+              <div class="testimonial-image">
+                <img src="/assets/images/testimonial-arjun.jpg" alt="Arjun Singh" loading="lazy">
+              </div>
+              <div class="testimonial-content">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"The counselors understood my profile perfectly and helped me get into my dream pharmacy college. Forever grateful!"</p>
+                <h4 class="testimonial-name">Arjun Singh</h4>
+                <p class="testimonial-course">B.Pharma, Manipal College</p>
+              </div>
+            </div>
+
+            <!-- Testimonial 5 -->
+            <div class="testimonial-card">
+              <div class="testimonial-image">
+                <img src="/assets/images/testimonial-sneha.jpg" alt="Sneha Reddy" loading="lazy">
+              </div>
+              <div class="testimonial-content">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Study abroad counseling was exceptional. Got admission to my dream university in Canada with scholarship!"</p>
+                <h4 class="testimonial-name">Sneha Reddy</h4>
+                <p class="testimonial-course">MS Computer Science, University of Toronto</p>
+              </div>
+            </div>
+
+            <!-- Testimonial 6 -->
+            <div class="testimonial-card">
+              <div class="testimonial-image">
+                <img src="/assets/images/testimonial-vikram.jpg" alt="Vikram Kumar" loading="lazy">
+              </div>
+              <div class="testimonial-content">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Professional, transparent, and result-oriented. Got admission to a top agricultural university within weeks!"</p>
+                <h4 class="testimonial-name">Vikram Kumar</h4>
+                <p class="testimonial-course">B.Sc Agriculture, Punjab Agricultural University</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="carousel-controls">
+            <button class="carousel-btn prev" aria-label="Previous testimonial">‹</button>
+            <button class="carousel-btn next" aria-label="Next testimonial">›</button>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CTA SECTION -->
-    <section class="section" style="background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%); color: var(--white);">
-      <div class="container text-center">
-        <h2 style="color: var(--white); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Ready to Start Your Journey?</h2>
-        <p style="font-size: 1.25rem; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.9);">Book a free consultation with our expert counselors</p>
-        <a href="/contact.php" class="btn btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Get Started Today</a>
+    <section class="cta-section" style="background-image: url('/assets/images/cta-background.jpg');">
+      <div class="cta-overlay"></div>
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title animate-text">Ready to Start Your Journey?</h2>
+          <p class="cta-subtitle animate-text">Book a free consultation with our expert counselors today</p>
+          <a href="/contact" class="btn btn-gold btn-glow btn-large">Get Started Today</a>
+        </div>
       </div>
     </section>
 
@@ -321,49 +567,66 @@ $mbaImage = getContent('home', 'services', 'mba_image', '');
     <div class="container">
       <div class="footer-grid">
         <div class="footer-column">
-          <h4>About EDU Career India</h4>
-          <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">Your trusted partner for career counseling and direct admissions. Your Dream, Our Mission.</p>
-          <p style="color: rgba(255, 255, 255, 0.8);">📞 +91-XXXXXXXXXX</p>
-          <p style="color: rgba(255, 255, 255, 0.8);">✉️ info@educareerindia.com</p>
+          <div class="footer-logo">
+            <span class="logo-edu">EDU</span>
+            <span class="logo-career">Career</span>
+            <span class="logo-india">India</span>
+          </div>
+          <p class="footer-tagline">Your Dream, Our Mission</p>
+          <p class="footer-text">Your trusted partner for career counseling and direct admissions.</p>
+          <div class="footer-contact">
+            <p>📞 +91-XXXXXXXXXX</p>
+            <p>✉️ info@educareerindia.com</p>
+          </div>
         </div>
+
         <div class="footer-column">
           <h4>Quick Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/about.php">About Us</a></li>
-            <li><a href="/courses.php">Courses</a></li>
-            <li><a href="/universities.php">Universities</a></li>
-            <li><a href="/contact.php">Contact Us</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/universities">Universities</a></li>
+            <li><a href="/contact">Contact Us</a></li>
           </ul>
         </div>
+
         <div class="footer-column">
           <h4>Our Courses</h4>
           <ul>
-            <li><a href="/courses.php#mbbs">MBBS Admission</a></li>
-            <li><a href="/courses.php#btech">B.Tech Engineering</a></li>
-            <li><a href="/courses.php#bpharma">B.Pharma Programs</a></li>
-            <li><a href="/courses.php#agriculture">B.Sc Agriculture</a></li>
-            <li><a href="/courses.php#mba">MBA & PGDM</a></li>
+            <li><a href="/courses#mbbs">MBBS Admission</a></li>
+            <li><a href="/courses#btech">B.Tech Engineering</a></li>
+            <li><a href="/courses#bpharma">B.Pharma Programs</a></li>
+            <li><a href="/courses#agriculture">B.Sc Agriculture</a></li>
+            <li><a href="/courses#mba">MBA & PGDM</a></li>
           </ul>
         </div>
+
         <div class="footer-column">
           <h4>Study Destinations</h4>
           <ul>
-            <li><a href="/universities.php#india">India</a></li>
-            <li><a href="/universities.php#usa">United States</a></li>
-            <li><a href="/universities.php#uk">United Kingdom</a></li>
-            <li><a href="/universities.php#australia">Australia</a></li>
-            <li><a href="/universities.php#canada">Canada</a></li>
-            <li><a href="/universities.php#dubai">Dubai</a></li>
+            <li><a href="/universities#india">India</a></li>
+            <li><a href="/universities#usa">United States</a></li>
+            <li><a href="/universities#uk">United Kingdom</a></li>
+            <li><a href="/universities#australia">Australia</a></li>
+            <li><a href="/universities#canada">Canada</a></li>
+            <li><a href="/universities#dubai">Dubai</a></li>
           </ul>
         </div>
       </div>
+
       <div class="footer-bottom">
         <p>&copy; 2025 EDU Career India. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
+  <!-- JAVASCRIPT -->
+  <script src="/assets/js/lenis-scroll.js" defer></script>
+  <script src="/assets/js/animations.js" defer></script>
+  <script src="/assets/js/globe.js" defer></script>
+  <script src="/assets/js/sliders.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
+
 </body>
 </html>
