@@ -1,28 +1,36 @@
 <?php
 /**
  * EDU Career India - Main Configuration File
- *
- * IMPORTANT: For shared hosting deployment, update the values below
+ * Works for both Docker and Shared Hosting automatically
  */
 
 // ============================================
-// DATABASE CONFIGURATION
+// DATABASE CONFIGURATION - Auto Environment Detection
 // ============================================
-// For shared hosting, change these values:
-// - DB_HOST: Usually 'localhost' on shared hosting
-// - DB_NAME: Your database name (e.g., 'username_educareer')
-// - DB_USER: Your database username
-// - DB_PASS: Your database password
 
-define('DB_HOST', 'db');              // Change to 'localhost' for shared hosting
-define('DB_NAME', 'educareer_db');    // Change to your actual database name
-define('DB_USER', 'educareer_user');  // Change to your database username
-define('DB_PASS', 'educareer_pass_2025'); // Change to your database password
+// Auto-detect Docker vs Shared Hosting
+$isDocker = (gethostname() === 'web' || file_exists('/.dockerenv'));
+
+// Docker Configuration
+if ($isDocker) {
+    define('DB_HOST', 'db');
+    define('DB_NAME', 'educareer_db');
+    define('DB_USER', 'educareer_user');
+    define('DB_PASS', 'educareer_pass_2025');
+}
+// Shared Hosting Configuration
+else {
+    // Edit these values for your shared hosting:
+    define('DB_HOST', 'localhost');                    // Usually 'localhost'
+    define('DB_NAME', 'educareer_db');                 // Your database name
+    define('DB_USER', 'educareer_user');               // Your database username
+    define('DB_PASS', 'educareer_pass_2025');          // Your database password
+}
 
 // ============================================
 // SITE CONFIGURATION
 // ============================================
-define('SITE_URL', 'https://www.educareerindia.com'); // Your actual domain
+define('SITE_URL', 'https://www.educareerindia.com');
 define('SITE_NAME', 'EDU Career India');
 define('SITE_EMAIL', 'info@educareerindia.com');
 
